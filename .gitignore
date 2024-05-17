@@ -16,6 +16,8 @@
 
 # production
 /build
+/mongodb
+!/mongodb/.gitkeep
 
 # misc
 .DS_Store

@@ -1,0 +1,21 @@
+services:
+  canva-db:
+    container_name: canva-db
+    image: mongo:7.0
+    restart: always
+    command: ['--port', '${DATABASE_PORT}']
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - ./mongodb:/data/db
+
+  db-admin:
+    container_name: canva-db-admin
+    image: mongo-express:1.0.2-20-alpine3.19
+    restart: always
+    ports:
+      - ${MONGO_EXPRESS_PORT}:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://canva-db:${DATABASE_PORT}
+    depends_on:
+      - canva-db
