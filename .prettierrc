@@ -4,5 +4,7 @@
   "printWidth": 80,
   "semi": true,
   "endOfLine": "lf",
-  "jsxSingleQuote": true
+  "jsxSingleQuote": true,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tw"]
 }

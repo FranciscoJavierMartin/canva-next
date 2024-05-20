@@ -5,13 +5,13 @@ export default function Input() {
   const [value, setValue] = useState('');
 
   return (
-    <div className='w-full relative mt-5 mx-0 mb-7'>
+    <div className='relative mx-0 mb-7 mt-5 w-full'>
       <input
         type='email'
         name='email'
         id='email'
         placeholder='Email'
-        className='w-full border-0 border-b-2 border-solid border-[#cacaca] p-1 absolute focus-within:border-[#3492eb] peer'
+        className='peer absolute w-full rounded-md border-0 border-b-2 border-solid border-[#5c5c5e] bg-transparent px-3 py-2 outline-none focus-within:border-purple-500'
         required
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -19,15 +19,15 @@ export default function Input() {
       <label
         htmlFor='email'
         className={`
-          absolute left-0 top-0 z-10 p-1 transition-all
+          absolute left-0 top-0 z-10 px-3 py-2 transition-all
           peer-focus-within:-top-3
-          peer-focus-within:text-[#3492eb]
           peer-focus-within:p-0
           peer-focus-within:text-xs
+          peer-focus-within:text-[#3492eb]
           peer-[:not(:placeholder-shown)]:-top-3
-          peer-[:not(:placeholder-shown)]:text-[#3492eb]
           peer-[:not(:placeholder-shown)]:p-0
           peer-[:not(:placeholder-shown)]:text-xs
+          peer-[:not(:placeholder-shown)]:text-[#3492eb]
         `}
       >
         Email
