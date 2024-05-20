@@ -41,12 +41,12 @@ export default function LoginForm() {
           Sign In
         </button>
 
-        {/* FIXME: Fix classes */}
-        <div className='flex items-center justify-between px-3 py-4'>
-          <div className='h-[1px] w-[44%] bg-slate-500'></div>
-          <div className='flex w-[6%] px-1 pb-1 text-center text-white'>Or</div>
-          <div className='h-[1px] w-[44%] bg-slate-500'></div>
+        <div className='flex items-center justify-between px-1 py-2'>
+          <div className='h-[1px]  flex-grow bg-slate-500'></div>
+          <div className='w-[30px] px-1 text-center text-white'>Or</div>
+          <div className='h-[1px] flex-grow bg-slate-500'></div>
         </div>
+
         <div className='pb-4'>
           <button className='flex w-full items-center justify-center gap-2 rounded-md bg-red-500 px-3 py-2 text-white outline-none hover:bg-red-600'>
             <span>
