@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
+import Input from './Input';
 
 export default function Modal() {
   return (
@@ -31,16 +33,7 @@ export default function Modal() {
           Login and Sign up in seconds
         </h2>
         <form>
-          <div className='flex flex-col gap-3 mb-3 text-white'>
-            <label htmlFor='email'>Email</label>
-            <input
-              type='email'
-              name='email'
-              id='email'
-              placeholder='Email'
-              className='px-3 py-2 rounded-md border border-[#5c5c5e] focus:border-purple-500 bg-transparent'
-            />
-          </div>
+          <Input />
         </form>
       </div>
     </div>
