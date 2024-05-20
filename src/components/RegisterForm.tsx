@@ -4,14 +4,26 @@ import { BiLogoGmail } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import InputForm from './InputForm';
 
-export default function LoginForm() {
+export default function RegisterForm() {
+  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   return (
     <>
-      <h2 className='text-center text-xl text-white'>Login in seconds</h2>
+      <h2 className='text-center text-xl text-white'>Sign Up in seconds</h2>
       <form className='flex flex-col gap-2'>
+        <InputForm
+          inputProps={{
+            id: 'name',
+            name: 'name',
+            placeholder: 'Name',
+            type: 'text',
+          }}
+          labelText='Name'
+          setValue={setName}
+          value={name}
+        />
         <InputForm
           inputProps={{
             id: 'email',
@@ -36,7 +48,7 @@ export default function LoginForm() {
         />
 
         <button className='mt-6 w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600'>
-          Sign In
+          Sign Up
         </button>
 
         <div className='flex items-center justify-between px-1 py-2'>

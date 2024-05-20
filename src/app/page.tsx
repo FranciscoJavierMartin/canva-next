@@ -1,16 +1,16 @@
 import Modal from '@/components/Modal';
 import Link from 'next/link';
 import LoginForm from '@/components/LoginForm';
+import RegisterForm from '@/components/RegisterForm';
 
 export default function Home({ searchParams }: SearchParamsProps) {
   const show = searchParams?.show === 'true';
+  const form = searchParams?.form;
 
   return (
     <div className='min-h-screen w-full bg-[#18191b]'>
-      {show && (
-        <Modal>
-          <LoginForm />
-        </Modal>
+      {show && form && (
+        <Modal>{form === 'login' ? <LoginForm /> : <RegisterForm />}</Modal>
       )}
       <div className='bg-[#212223] shadow-md'>
         <div className='m-auto w-[93%] py-3'>
@@ -27,14 +27,17 @@ export default function Home({ searchParams }: SearchParamsProps) {
             </div>
             <div className='flex gap-4'>
               <Link
-                href='/?show=true'
+                href='/?show=true&form=login'
                 className='w-[80px] rounded-md bg-teal-700 py-2 text-center  font-medium text-white transition-all hover:bg-teal-500'
               >
                 Sign In
               </Link>
-              <button className='w-[80px] rounded-md bg-purple-700 py-2 text-center  font-medium text-white transition-all hover:bg-purple-500'>
+              <Link
+                href='/?show=true&form=register'
+                className='w-[80px] rounded-md bg-purple-700 py-2 text-center  font-medium text-white transition-all hover:bg-purple-500'
+              >
                 Sign Up
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -48,9 +51,12 @@ export default function Home({ searchParams }: SearchParamsProps) {
           <span className='text-2xl font-medium text-[#aca9a9]'>
             Canva makes it easy to create and share professional designs.
           </span>
-          <button className='w-[200px] rounded-md bg-purple-700 py-2 text-center font-medium text-white transition-all hover:bg-purple-500'>
+          <Link
+            href='/?show=true&form=register'
+            className='w-[200px] rounded-md bg-purple-700 py-2 text-center font-medium text-white transition-all hover:bg-purple-500'
+          >
             Sign Up for free
-          </button>
+          </Link>
         </div>
       </div>
     </div>
