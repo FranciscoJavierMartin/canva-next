@@ -18,9 +18,16 @@ export default function Input() {
       />
       <label
         htmlFor='email'
-        className={`absolute left-0 top-0 z-10 p-1 peer-focus-within:absolute peer-focus-within:-top-3 peer-focus-within:text-[#3492eb] peer-focus-within:p-0 peer-focus-within:text-xs
-        peer-[:not(:placeholder-shown)]:absolute peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-[#3492eb] peer-[:not(:placeholder-shown)]:p-0 peer-[:not(:placeholder-shown)]:text-xs
-
+        className={`
+          absolute left-0 top-0 z-10 p-1 transition-all
+          peer-focus-within:-top-3
+          peer-focus-within:text-[#3492eb]
+          peer-focus-within:p-0
+          peer-focus-within:text-xs
+          peer-[:not(:placeholder-shown)]:-top-3
+          peer-[:not(:placeholder-shown)]:text-[#3492eb]
+          peer-[:not(:placeholder-shown)]:p-0
+          peer-[:not(:placeholder-shown)]:text-xs
         `}
       >
         Email
