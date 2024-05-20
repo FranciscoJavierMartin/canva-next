@@ -18,7 +18,6 @@ export default function InputForm({
       <input
         {...inputProps}
         className='peer absolute w-full rounded-md border-0 border-b-2 border-solid border-[#5c5c5e] bg-transparent px-3 py-2  outline-none focus-within:border-purple-500'
-        required
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
