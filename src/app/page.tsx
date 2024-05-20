@@ -10,7 +10,9 @@ export default function Home({ searchParams }: SearchParamsProps) {
   return (
     <div className='min-h-screen w-full bg-[#18191b]'>
       {show && form && (
-        <Modal>{form === 'login' ? <LoginForm /> : <RegisterForm />}</Modal>
+        <Modal goBackRoute='/'>
+          {form === 'login' ? <LoginForm /> : <RegisterForm />}
+        </Modal>
       )}
       <div className='bg-[#212223] shadow-md'>
         <div className='m-auto w-[93%] py-3'>
