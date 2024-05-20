@@ -34,6 +34,16 @@ export default function LoginForm() {
           setValue={setPassword}
           value={password}
         />
+        <div>
+          <button className='w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600'>
+            Sign In
+          </button>
+        </div>
+        <div className='flex items-center justify-between px-3 py-4'>
+          <div></div>
+          <div>Or</div>
+          <div></div>
+        </div>
       </form>
     </>
   );
