@@ -42,27 +42,24 @@ export default function LoginForm() {
         </button>
 
         <div className='flex items-center justify-between px-1 py-2'>
-          <div className='h-[1px]  flex-grow bg-slate-500'></div>
+          <div className='h-[1px] flex-grow bg-slate-500'></div>
           <div className='px-3 text-center text-white'>Or</div>
           <div className='h-[1px] flex-grow bg-slate-500'></div>
         </div>
 
-        <div className='pb-4'>
-          <button className='flex w-full items-center justify-center gap-2 rounded-md bg-red-500 px-3 py-2 text-white outline-none hover:bg-red-600'>
-            <span>
-              <BiLogoGmail />
-            </span>
-            <span>Login with Gmail</span>
-          </button>
-        </div>
-        <div className='pb-4'>
-          <button className='flex w-full items-center justify-center gap-2 rounded-md bg-blue-500 px-3 py-2 text-white outline-none hover:bg-blue-600'>
-            <span>
-              <FaFacebook />
-            </span>
-            <span>Login with Facebook</span>
-          </button>
-        </div>
+        <button className='my-1 flex w-full items-center justify-center gap-2 rounded-md bg-red-500 px-3 py-2 text-white outline-none hover:bg-red-600'>
+          <span>
+            <BiLogoGmail />
+          </span>
+          <span>Login with Gmail</span>
+        </button>
+
+        <button className='my-1 flex w-full items-center justify-center gap-2 rounded-md bg-blue-500 px-3 py-2 text-white outline-none hover:bg-blue-600'>
+          <span>
+            <FaFacebook />
+          </span>
+          <span>Login with Facebook</span>
+        </button>
       </form>
     </>
   );
