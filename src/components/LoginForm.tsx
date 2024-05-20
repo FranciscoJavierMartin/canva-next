@@ -11,7 +11,7 @@ export default function LoginForm() {
   return (
     <>
       <h2 className='pb-4 text-center text-xl text-white'>
-        Login and Sign up in seconds
+        Login or Sign Up in seconds
       </h2>
       <form className='flex flex-col gap-2'>
         <InputForm
