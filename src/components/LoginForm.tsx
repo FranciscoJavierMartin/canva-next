@@ -43,7 +43,7 @@ export default function LoginForm() {
 
         <div className='flex items-center justify-between px-1 py-2'>
           <div className='h-[1px]  flex-grow bg-slate-500'></div>
-          <div className='w-[30px] px-1 text-center text-white'>Or</div>
+          <div className='px-3 text-center text-white'>Or</div>
           <div className='h-[1px] flex-grow bg-slate-500'></div>
         </div>
 
