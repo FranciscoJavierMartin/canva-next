@@ -1,8 +1,10 @@
+import { PropsWithChildren } from 'react';
 import Link from 'next/link';
 import { RxCross2 } from 'react-icons/rx';
-import LoginForm from './LoginForm';
 
-export default function Modal() {
+type ModalProps = {};
+
+export default function Modal({ children }: PropsWithChildren<ModalProps>) {
   return (
     <div className='visible fixed z-50 flex h-screen w-screen items-center justify-center bg-[#252627ad] transition-all duration-500'>
       <div className='relative m-auto w-[350px] rounded-md bg-[#323335] px-6 py-4'>
@@ -12,8 +14,7 @@ export default function Modal() {
         >
           <RxCross2 />
         </Link>
-        {/* Children */}
-        <LoginForm />
+        {children}
       </div>
     </div>
   );

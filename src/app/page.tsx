@@ -1,12 +1,17 @@
 import Modal from '@/components/Modal';
 import Link from 'next/link';
+import LoginForm from '@/components/LoginForm';
 
 export default function Home({ searchParams }: SearchParamsProps) {
   const show = searchParams?.show === 'true';
 
   return (
     <div className='min-h-screen w-full bg-[#18191b]'>
-      {show && <Modal />}
+      {show && (
+        <Modal>
+          <LoginForm />
+        </Modal>
+      )}
       <div className='bg-[#212223] shadow-md'>
         <div className='m-auto w-[93%] py-3'>
           <div className='flex items-center justify-between'>
