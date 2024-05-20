@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
-import Input from './Input';
+import LoginForm from './LoginForm';
 
 export default function Modal() {
   return (
@@ -23,18 +22,13 @@ export default function Modal() {
     //     </div>
     //   </div>
     // </div>
-    <div className='w-screen h-screen fixed flex justify-center items-center bg-[#252627ad] z-50 transition-all duration-500 visible'>
-      <div className='w-[350px] bg-[#323335] m-auto px-6 py-4 rounded-md relative'>
-        <div className='absolute right-4 top-4 text-xl cursor-pointer text-white'>
+    <div className='visible fixed z-50 flex h-screen w-screen items-center justify-center bg-[#252627ad] transition-all duration-500'>
+      <div className='relative m-auto w-[350px] rounded-md bg-[#323335] px-6 py-4'>
+        <div className='absolute right-4 top-4 cursor-pointer text-xl text-white'>
           <RxCross2 />
         </div>
         {/* Children */}
-        <h2 className='text-white pb-4 text-center text-xl'>
-          Login and Sign up in seconds
-        </h2>
-        <form>
-          <Input />
-        </form>
+        <LoginForm />
       </div>
     </div>
   );

@@ -1,25 +1,32 @@
 'use client';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function Input() {
-  const [value, setValue] = useState('');
+interface InputFormProps {
+  inputProps: Pick<HTMLInputElement, 'type' | 'name' | 'placeholder' | 'id'>;
+  labelText: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  value: string;
+}
 
+export default function InputForm({
+  inputProps,
+  labelText,
+  setValue,
+  value,
+}: InputFormProps) {
   return (
     <div className='relative mx-0 mb-7 mt-5 w-full text-white'>
       <input
-        type='email'
-        name='email'
-        id='email'
-        placeholder='Email'
+        {...inputProps}
         className='peer absolute w-full rounded-md border-0 border-b-2 border-solid border-[#5c5c5e] bg-transparent px-3 py-2  outline-none focus-within:border-purple-500'
         required
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
       <label
-        htmlFor='email'
+        htmlFor={inputProps.id}
         className={`
-          absolute left-0 top-0 z-10 px-3 py-2 transition-all
+          absolute left-0 top-0 px-3 py-2 transition-all
           peer-focus-within:-top-3
           peer-focus-within:p-0
           peer-focus-within:text-xs
@@ -30,7 +37,7 @@ export default function Input() {
           peer-[:not(:placeholder-shown)]:text-purple-500
         `}
       >
-        Email
+        {labelText}
       </label>
     </div>
   );
