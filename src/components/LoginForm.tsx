@@ -36,11 +36,11 @@ export default function LoginForm() {
           setValue={setPassword}
           value={password}
         />
-        <div>
-          <button className='w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600'>
-            Sign In
-          </button>
-        </div>
+
+        <button className='mt-6 w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600'>
+          Sign In
+        </button>
+
         {/* FIXME: Fix classes */}
         <div className='flex items-center justify-between px-3 py-4'>
           <div className='h-[1px] w-[44%] bg-slate-500'></div>
