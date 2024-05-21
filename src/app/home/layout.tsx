@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
 export default function HomeLayout({ children }: PropsWithChildren) {
@@ -26,6 +27,35 @@ export default function HomeLayout({ children }: PropsWithChildren) {
                   src='https://templates-flatlogic.herokuapp.com/sing-app/html5/demo/img/people/a5.jpg'
                   alt=''
                 />
+              </div>
+              <div className='absolute right-0 top-14 w-64 border border-gray-700 bg-[#313030] p-3 transition duration-500'>
+                <div className='flex items-center justify-start gap-5 p-2'>
+                  <img
+                    className='size-[40px] rounded-full'
+                    src='https://templates-flatlogic.herokuapp.com/sing-app/html5/demo/img/people/a5.jpg'
+                    alt=''
+                  />
+                  <div className='flex flex-col items-start justify-center'>
+                    <span className='text-sm font-bold text-[#e0dddd]'>
+                      John Doe
+                    </span>
+                    <span className='text-sm font-bold text-[#e0dddd]'>
+                      john@doe.com
+                    </span>
+                  </div>
+                </div>
+                <ul className='font-semibold text-[#e0dddd]'>
+                  <li>
+                    <Link className='p-2' href='/'>
+                      Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className='p-2' href='/'>
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
