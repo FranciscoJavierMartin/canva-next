@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { BiLogoGmail } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
-import InputForm from './InputForm';
+import InputForm from '@/components/InputForm';
 
 export default function RegisterForm() {
   const [name, setName] = useState<string>('');

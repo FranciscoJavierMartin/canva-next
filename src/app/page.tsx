@@ -45,7 +45,7 @@ export default function Home({ searchParams }: SearchParamsProps) {
         </div>
       </div>
 
-      <div className='size-full items-center justify-center p-4'>
+      <div className='size-full items-center justify-center p-4 text-center'>
         <div className='flex flex-col items-center justify-center gap-6 py-[170px]'>
           <h2 className='text-5xl font-bold text-[#c7c5c5]'>
             What you will design today?
