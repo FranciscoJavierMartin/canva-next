@@ -1,3 +1,5 @@
+import Logout from '@/components/icons/Logout';
+import Settings from '@/components/icons/Settings';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
@@ -28,7 +30,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
                   alt=''
                 />
               </div>
-              <div className='absolute right-0 top-14 w-64 border border-gray-700 bg-[#313030] p-3 transition duration-500'>
+              <div className='absolute right-0 top-14 w-64 border border-gray-700 bg-[#313030] p-3 pb-1 transition duration-500'>
                 <div className='flex items-center justify-start gap-5 p-2'>
                   <img
                     className='size-[40px] rounded-full'
@@ -44,14 +46,16 @@ export default function HomeLayout({ children }: PropsWithChildren) {
                     </span>
                   </div>
                 </div>
-                <ul className='font-semibold text-[#e0dddd]'>
+                <ul className='mt-3 text-[#e0dddd]'>
                   <li>
-                    <Link className='p-2' href='/'>
+                    <Link className='flex gap-2 p-2' href='/'>
+                      <Settings />
                       Settings
                     </Link>
                   </li>
-                  <li>
-                    <Link className='p-2' href='/'>
+                  <li className='mt-2 border-t'>
+                    <Link className='flex gap-2 p-2' href='/'>
+                      <Logout />
                       Logout
                     </Link>
                   </li>
