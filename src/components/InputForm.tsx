@@ -1,16 +1,21 @@
 import { Dispatch, SetStateAction } from 'react';
 import EyeOpen from './icons/EyeOpen';
+import EyeClose from './icons/EyeClose';
 
 interface InputFormProps {
   inputProps: Pick<HTMLInputElement, 'type' | 'name' | 'placeholder' | 'id'>;
-  setValue: Dispatch<SetStateAction<string>>;
   value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  showPassword?: boolean;
+  togglePassword?: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function InputForm({
   inputProps,
   setValue,
   value,
+  showPassword,
+  togglePassword,
 }: InputFormProps) {
   return (
     <div className='relative mx-0 mb-7 mt-5 w-full text-white'>
@@ -21,9 +26,11 @@ export default function InputForm({
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <button className='pr-3 py-2'>
-          <EyeOpen />
-        </button>
+        {inputProps.type === 'password' && (
+          <button className='py-2 pr-3'>
+            {showPassword ? <EyeClose /> : <EyeOpen />}
+          </button>
+        )}
         <label
           htmlFor={inputProps.id}
           className={`

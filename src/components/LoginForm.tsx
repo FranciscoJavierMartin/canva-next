@@ -7,6 +7,7 @@ import InputForm from '@/components/InputForm';
 export default function LoginForm() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
     <>
@@ -32,6 +33,8 @@ export default function LoginForm() {
           }}
           setValue={setPassword}
           value={password}
+          showPassword={showPassword}
+          togglePassword={setShowPassword}
         />
 
         <button className='mt-6 w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600'>
