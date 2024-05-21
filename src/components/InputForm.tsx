@@ -2,14 +2,12 @@ import { Dispatch, SetStateAction } from 'react';
 
 interface InputFormProps {
   inputProps: Pick<HTMLInputElement, 'type' | 'name' | 'placeholder' | 'id'>;
-  labelText: string;
   setValue: Dispatch<SetStateAction<string>>;
   value: string;
 }
 
 export default function InputForm({
   inputProps,
-  labelText,
   setValue,
   value,
 }: InputFormProps) {
@@ -35,7 +33,7 @@ export default function InputForm({
           peer-[:not(:placeholder-shown)]:text-purple-500
         `}
       >
-        {labelText}
+        {inputProps.placeholder}
       </label>
     </div>
   );

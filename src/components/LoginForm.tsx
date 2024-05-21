@@ -19,10 +19,10 @@ export default function LoginForm() {
             placeholder: 'Email',
             type: 'email',
           }}
-          labelText='Email'
           setValue={setEmail}
           value={email}
         />
+
         <InputForm
           inputProps={{
             id: 'password',
@@ -30,7 +30,6 @@ export default function LoginForm() {
             placeholder: 'Password',
             type: 'password',
           }}
-          labelText='Password'
           setValue={setPassword}
           value={password}
         />

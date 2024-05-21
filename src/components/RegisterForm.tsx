@@ -20,7 +20,6 @@ export default function RegisterForm() {
             placeholder: 'Name',
             type: 'text',
           }}
-          labelText='Name'
           setValue={setName}
           value={name}
         />
@@ -31,7 +30,6 @@ export default function RegisterForm() {
             placeholder: 'Email',
             type: 'email',
           }}
-          labelText='Email'
           setValue={setEmail}
           value={email}
         />
@@ -42,7 +40,6 @@ export default function RegisterForm() {
             placeholder: 'Password',
             type: 'password',
           }}
-          labelText='Password'
           setValue={setPassword}
           value={password}
         />
