@@ -23,15 +23,16 @@ export default function HomeLayout({ children }: PropsWithChildren) {
               <button className='overflow-hidden rounded-[3px] bg-[#8b3dff] px-3 py-2 text-center font-medium text-white'>
                 Create a design
               </button>
-              <div className='cursor-pointer'>
+              <button className='peer cursor-pointer'>
                 <img
                   className='h-[45px] w-[48px] rounded-full'
                   src='https://templates-flatlogic.herokuapp.com/sing-app/html5/demo/img/people/a5.jpg'
                   alt=''
                 />
-              </div>
-              <div className='absolute right-0 top-14 w-64 border border-gray-700 bg-[#313030] p-3 pb-1 transition duration-500'>
-                <div className='flex items-center justify-start gap-5 p-2'>
+              </button>
+              {/* TODO: Adjust for mobile design */}
+              <div className='absolute -right-4 top-14 hidden w-64 border border-gray-700 bg-[#313030] pt-3 transition duration-500 peer-focus-within:block'>
+                <div className='flex items-center justify-start gap-5 p-3'>
                   <img
                     className='size-[40px] rounded-full'
                     src='https://templates-flatlogic.herokuapp.com/sing-app/html5/demo/img/people/a5.jpg'
@@ -46,14 +47,14 @@ export default function HomeLayout({ children }: PropsWithChildren) {
                     </span>
                   </div>
                 </div>
-                <ul className='mt-3 text-[#e0dddd]'>
-                  <li>
+                <ul className='text-[#e0dddd]'>
+                  <li className='p-1 transition hover:bg-[#212223]'>
                     <Link className='flex gap-2 p-2' href='/'>
                       <Settings />
                       Settings
                     </Link>
                   </li>
-                  <li className='mt-2 border-t'>
+                  <li className='border-t px-1 pb-1 pt-2 transition hover:bg-[#212223]'>
                     <Link className='flex gap-2 p-2' href='/'>
                       <Logout />
                       Logout
