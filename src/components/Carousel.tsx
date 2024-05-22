@@ -3,7 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 export default function Carousel() {
   return (
-    <div className='scroll-s no-scrollbar inline-flex snap-mandatory overflow-x-scroll scroll-smooth'>
+    <div className='no-scrollbar inline-flex snap-mandatory overflow-x-scroll scroll-smooth'>
       <div className='box-content flex flex-none snap-start'>
         {[1, 2, 3, 4, 5, 6, 7, 8].map((d) => (
           <div className='group relative h-[170px] w-full px-2' key={d}>
