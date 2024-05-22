@@ -2,15 +2,17 @@
 import { useRef } from 'react';
 import CreateComponent from '@/components/CreateComponent';
 
-export default function CreateDesignPage() {
+export default function CreateDesignPage({ searchParams }: SearchParamsProps) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const height = searchParams?.height || '200';
+  const width = searchParams?.width || '400';
 
   const obj = {
     name: 'main_frame',
     type: 'rect',
     id: Math.floor(Math.random() * 100 + 1),
-    height: '200',
-    width: '400',
+    height,
+    width,
     z_index: 1,
     color: 'green',
     image:

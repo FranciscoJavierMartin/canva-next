@@ -28,7 +28,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
   return (
     <div className='min-h-screen w-full bg-[#18191b]'>
       <div className='fixed left-0 top-0 z-20 w-full bg-[#212223] shadow-md'>
-        <div className='w-[93%] m-auto py-3'>
+        <div className='m-auto w-[93%] py-3'>
           <div className='flex items-center justify-between'>
             <div className='h-[48px] w-[80px]'>
               <img
@@ -41,9 +41,12 @@ export default function HomeLayout({ children }: PropsWithChildren) {
               />
             </div>
             <div className='relative flex items-center justify-center gap-4'>
-              <button className='overflow-hidden rounded-[3px] bg-[#8b3dff] px-3 py-2 text-center font-medium text-white'>
+              <Link
+                href='/design/create'
+                className='overflow-hidden rounded-[3px] bg-[#8b3dff] px-3 py-2 text-center font-medium text-white'
+              >
                 Create a design
-              </button>
+              </Link>
               <button className='peer cursor-pointer'>
                 <img
                   className='h-[45px] w-[48px] rounded-full'

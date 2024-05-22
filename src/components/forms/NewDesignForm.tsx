@@ -1,9 +1,21 @@
 'use client';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function NewDesignForm() {
   const [height, setHeight] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
+  const router = useRouter();
+
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const queryParams = new URLSearchParams({
+      width: width.toString(),
+      height: height.toString(),
+    });
+
+    router.push(`/design/create?${queryParams.toString()}`);
+  }
 
   return (
     <div className='group'>
@@ -13,7 +25,10 @@ export default function NewDesignForm() {
       >
         Custom Size
       </button>
-      <form className='absolute right-3 top-16 hidden w-[250px] gap-3 bg-[#252627] p-4 text-white transition-all duration-500 group-focus-within:block'>
+      <form
+        onSubmit={onSubmit}
+        className='absolute right-3 top-16 hidden w-[250px] gap-3 bg-[#252627] p-4 text-white transition-all duration-500 group-focus-within:block'
+      >
         <div className='grid grid-cols-2 gap-3 pb-4'>
           <div className='flex flex-col items-start justify-center gap-2'>
             <label htmlFor='width'>Width</label>
@@ -21,6 +36,8 @@ export default function NewDesignForm() {
               type='number'
               name='width'
               id='width'
+              required
+              min={1}
               value={width}
               onChange={(e) => setWidth(+e.target.value)}
               className='w-full rounded-md border border-[#404040] bg-[#1b1a1a] px-2 py-1 outline-none'
@@ -32,6 +49,8 @@ export default function NewDesignForm() {
               type='number'
               name='height'
               id='height'
+              required
+              min={1}
               value={height}
               onChange={(e) => setHeight(+e.target.value)}
               className='w-full rounded-md border border-[#404040] bg-[#1b1a1a] px-2 py-1 outline-none'
