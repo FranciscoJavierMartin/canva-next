@@ -60,6 +60,7 @@ export default function NewDesignForm() {
         <button
           type='submit'
           className='w-full overflow-hidden rounded-md bg-[#32769ead] px-4 py-2 text-center font-medium text-white hover:bg-[#1e830f]'
+          disabled={!(height && width)}
         >
           Create new design
         </button>
