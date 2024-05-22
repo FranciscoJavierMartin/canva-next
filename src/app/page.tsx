@@ -15,7 +15,7 @@ export default function Home({ searchParams }: SearchParamsProps) {
         </Modal>
       )}
       <div className='bg-[#212223] shadow-md'>
-        <div className='m-auto w-[93%] py-3'>
+        <div className='container m-auto py-3'>
           <div className='flex items-center justify-between'>
             <div className='h-[48px] w-[80px]'>
               <img
