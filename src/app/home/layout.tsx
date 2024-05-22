@@ -28,7 +28,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
   return (
     <div className='min-h-screen w-full bg-[#18191b]'>
       <div className='fixed left-0 top-0 z-20 w-full bg-[#212223] shadow-md'>
-        <div className='container m-auto py-3'>
+        <div className='w-[93%] m-auto py-3'>
           <div className='flex items-center justify-between'>
             <div className='h-[48px] w-[80px]'>
               <img
