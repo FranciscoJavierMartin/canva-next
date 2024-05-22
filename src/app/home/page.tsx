@@ -13,7 +13,9 @@ export default function Index() {
         </div>
       </div>
       <div>
-        <h2>Your recent designs</h2>
+        <h2 className='py-6 text-xl font-semibold text-white'>
+          Your recent designs
+        </h2>
         <div>
           <Carousel />
         </div>
