@@ -1,3 +1,4 @@
+import Carousel from '@/components/Carousel';
 import NewDesignForm from '@/components/forms/NewDesignForm';
 
 export default function Index() {
@@ -9,6 +10,12 @@ export default function Index() {
           <h2 className='pb-10 pt-6 text-3xl font-semibold text-white'>
             What will you design today
           </h2>
+        </div>
+      </div>
+      <div>
+        <h2>Your recent designs</h2>
+        <div>
+          <Carousel />
         </div>
       </div>
     </div>
