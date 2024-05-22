@@ -1,7 +1,7 @@
 import Modal from '@/components/Modal';
 import Link from 'next/link';
-import LoginForm from '@/components/LoginForm';
-import RegisterForm from '@/components/RegisterForm';
+import LoginForm from '@/components/forms/LoginForm';
+import RegisterForm from '@/components/forms/RegisterForm';
 
 export default function Home({ searchParams }: SearchParamsProps) {
   const show = searchParams?.show === 'true';

@@ -1,3 +1,5 @@
+import NewDesignForm from '@/components/forms/NewDesignForm';
+
 export default function Index() {
   return (
     <div>
@@ -5,6 +7,7 @@ export default function Index() {
         <button className='absolute right-3 top-3 overflow-hidden rounded-md bg-[#32769ead] px-4 py-2 text-center text-base font-medium text-white hover:bg-[#1e830f]'>
           Custom Size
         </button>
+        <NewDesignForm />
         <div>
           <h2 className='pb-10 pt-6 text-3xl font-semibold text-white'>
             What will you design today
