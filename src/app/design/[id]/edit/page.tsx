@@ -11,7 +11,8 @@ import { LuLayoutTemplate } from 'react-icons/lu';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { RxTransparencyGrid } from 'react-icons/rx';
 import Header from '@/components/Header';
-import TemplateDesign from '@/components/TemplateDesign';
+import TemplateDesign from '@/components/sidebar/TemplateDesign';
+import MyImages from '@/components/sidebar/MyImages';
 
 type ElementType =
   | 'design'
@@ -117,35 +118,28 @@ export default function EditDesignPage() {
                 <TemplateDesign />
               </div>
             )}
-            {state === 'design' && (
-              <div className='grid grid-cols-2 gap-2'>
-
+            {state === 'shape' && (
+              <div className='grid grid-cols-3 gap-2'>
+                <div className='h-[90px] cursor-pointer bg-[#3c3c3d]'></div>
+                <div className='h-[90px] cursor-pointer rounded-full bg-[#3c3c3d]'></div>
+                <div
+                  className='h-[90px] cursor-pointer bg-[#3c3c3d]'
+                  style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%' }}
+                ></div>
               </div>
             )}
-            {state === 'design' && (
-              <div className='grid grid-cols-2 gap-2'>
-
-              </div>
+            {state === 'image' && (
+              <MyImages/>
             )}
-            {state === 'design' && (
-              <div className='grid grid-cols-2 gap-2'>
-
-              </div>
+            {state === 'text' && <div className='grid grid-cols-2 gap-2'></div>}
+            {state === 'project' && (
+              <div className='grid grid-cols-2 gap-2'></div>
             )}
-            {state === 'design' && (
-              <div className='grid grid-cols-2 gap-2'>
-
-              </div>
+            {state === 'initImage' && (
+              <div className='grid grid-cols-2 gap-2'></div>
             )}
-            {state === 'design' && (
-              <div className='grid grid-cols-2 gap-2'>
-
-              </div>
-            )}
-            {state === 'design' && (
-              <div className='grid grid-cols-2 gap-2'>
-
-              </div>
+            {state === 'background' && (
+              <div className='grid grid-cols-2 gap-2'></div>
             )}
           </div>
         </div>
