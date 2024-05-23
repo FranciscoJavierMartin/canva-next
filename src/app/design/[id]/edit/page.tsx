@@ -14,6 +14,7 @@ import Header from '@/components/Header';
 import TemplateDesign from '@/components/sidebar/TemplateDesign';
 import MyImages from '@/components/sidebar/MyImages';
 import ImageGallery from '@/components/sidebar/ImageGallery';
+import clsx from 'clsx';
 
 type ElementType =
   | 'design'
@@ -106,8 +107,15 @@ export default function EditDesignPage() {
           ))}
         </div>
         <div className='h-full w-[calc(100%-80px)]'>
-          {/* TODO: Add styles to close */}
-          <div className='fixed left-[80px] z-30 h-full w-[350px] bg-[#252627] px-8 py-5 transition-all duration-700'>
+          <div
+            className={clsx(
+              'fixed z-30 h-full w-[350px] bg-[#252627] transition-all duration-700',
+              {
+                '-left-[350px] p-0': show.status,
+                'left-[80px] px-8 py-5': show.status,
+              },
+            )}
+          >
             <button
               onClick={() => setShow({ name: '', status: true })}
               className='absolute -right-2 top-[40%] flex h-[100px] w-[20px] cursor-pointer items-center justify-center rounded-full bg-[#252627] text-slate-300'
