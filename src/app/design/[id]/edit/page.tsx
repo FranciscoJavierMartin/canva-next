@@ -10,11 +10,11 @@ import {
 import { LuLayoutTemplate } from 'react-icons/lu';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { RxTransparencyGrid } from 'react-icons/rx';
+import clsx from 'clsx';
 import Header from '@/components/Header';
 import TemplateDesign from '@/components/sidebar/TemplateDesign';
 import MyImages from '@/components/sidebar/MyImages';
 import ImageGallery from '@/components/sidebar/ImageGallery';
-import clsx from 'clsx';
 
 type ElementType =
   | 'design'

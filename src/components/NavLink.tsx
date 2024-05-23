@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
 
 export type NavLinkProps = {
   text: string;
@@ -16,16 +17,10 @@ export default function NavLink({ text, icon: Icon, route }: NavLinkProps) {
     <li>
       <Link
         href={route}
-        className={`
-          flex
-          items-center
-          justify-start
-          gap-3
-          rounded-md
-          ${pathname === route ? 'bg-[#ffffff26]' : ''}
-          py-2
-          px-3
-          text-[#e0dddd]`}
+        className={clsx(
+          'flex items-center justify-start gap-3 rounded-md px-3 py-2 text-[#e0dddd]',
+          pathname === route && 'bg-[#ffffff26]',
+        )}
       >
         {Icon}
         <span className='font-medium'>{text}</span>
