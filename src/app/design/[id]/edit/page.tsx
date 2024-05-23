@@ -146,7 +146,22 @@ export default function EditDesignPage() {
               </div>
             )}
             {state === 'background' && (
-              <div className='grid grid-cols-2 gap-2'></div>
+              <div className='no-scrollbar flex h-[88vh] items-start justify-start overflow-x-auto'>
+                <div className='grid grid-cols-2 gap-2'>
+                  {[1, 2, 3, 4, 5, 6].map((img, i) => (
+                    <div
+                      key={i}
+                      className='h-[90px] w-full cursor-pointer overflow-hidden rounded-sm'
+                    >
+                      <img
+                        className='size-full object-fill'
+                        src='http://localhost:4200/proxy-image.jpg'
+                        alt=''
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         </div>
