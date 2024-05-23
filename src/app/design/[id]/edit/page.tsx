@@ -15,6 +15,7 @@ import Header from '@/components/Header';
 import TemplateDesign from '@/components/sidebar/TemplateDesign';
 import MyImages from '@/components/sidebar/MyImages';
 import ImageGallery from '@/components/sidebar/ImageGallery';
+import CreateComponent from '@/components/CreateComponent';
 
 type ElementType =
   | 'design'
@@ -81,6 +82,20 @@ export default function EditDesignPage() {
     status: true,
     name: '',
   });
+  const [currentComponent, setCurrentComponent] = useState<object>({});
+  const [components, setComponents] = useState<object[]>([
+    {
+      name: 'main_frame',
+      type: 'rect',
+      id: Math.floor(Math.random() * 1000 + 1),
+      height: 500,
+      width: 650,
+      z_index: 1,
+      color: '#fff',
+      image: '',
+      setCurrentComponent,
+    },
+  ]);
 
   function setElements(type: ElementType, name: string) {
     setState(type);
@@ -88,6 +103,22 @@ export default function EditDesignPage() {
       status: false,
       name,
     });
+  }
+
+  function moveElement() {
+    console.log('Move element');
+  }
+
+  function resizeElement() {
+    console.log('Resize element');
+  }
+
+  function rotateElement() {
+    console.log('Rotate element');
+  }
+
+  function removeElement() {
+    console.log('Remove component');
   }
 
   return (
@@ -115,7 +146,7 @@ export default function EditDesignPage() {
               'fixed z-30 h-full w-[350px] bg-[#252627] transition-all duration-700',
               {
                 '-left-[350px] p-0': show.status,
-                'left-[80px] px-8 py-5': show.status,
+                'left-[80px] px-8 py-5': !show.status,
               },
             )}
           >
@@ -174,6 +205,34 @@ export default function EditDesignPage() {
                 </div>
               </div>
             )}
+          </div>
+          <div className='flex size-full'>
+            <div
+              className={clsx(
+                'relative flex h-full items-center justify-center',
+                {
+                  'w-full': currentComponent,
+                  'w-[calc(100%-250px)] overflow-hidden': !currentComponent,
+                },
+              )}
+            >
+              {/* TODO: Add width and height */}
+              <div className='flex min-h-[500px] min-w-[650px] items-center justify-center overflow-hidden'>
+                <div
+                  id='main_design'
+                  className='relative size-auto overflow-hidden'
+                >
+                  {components.map((c, i) => (
+                    <CreateComponent
+                      key={i}
+                      info={c}
+                      currentComponent={currentComponent}
+                      removeComponent={removeElement}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

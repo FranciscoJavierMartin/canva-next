@@ -10,7 +10,7 @@ export default function CreateDesignPage({ searchParams }: SearchParamsProps) {
   const obj = {
     name: 'main_frame',
     type: 'rect',
-    id: Math.floor(Math.random() * 100 + 1),
+    id: Math.floor(Math.random() * 1000 + 1),
     height,
     width,
     z_index: 1,

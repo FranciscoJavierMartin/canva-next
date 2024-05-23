@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 type CreateComponentProps = {
   info: any;
   currentComponent: object;
+  removeComponent: Function;
 };
 
 export default function CreateComponent({
