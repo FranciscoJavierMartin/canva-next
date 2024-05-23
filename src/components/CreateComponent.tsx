@@ -12,6 +12,7 @@ export default function CreateComponent({
   currentComponent,
   removeComponent,
 }: CreateComponentProps) {
+  const randValue = Math.floor(Math.random() * 1000).toString();
   let html: ReactNode = '';
 
   if (info.name === 'main_frame') {
@@ -30,6 +31,26 @@ export default function CreateComponent({
           <img className='size-full' src={info.image} alt='image' />
         )}
       </div>
+    );
+  }
+
+  if (info.name === 'shape' && info.type === 'rect') {
+    html = (
+      <div
+        id={randValue}
+        onClick={() => info.setCurrentComponent(info)}
+        style={{
+          width: info.width + 'px',
+          height: info.height + 'px',
+          backgroundColor: info.color,
+          opacity: info.opacity,
+          left: info.left + 'px',
+          top: info.top + 'px',
+          zIndex: info.z_index,
+          transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
+        }}
+        className='group absolute hover:border-[2px] hover:border-indigo-500'
+      ></div>
     );
   }
 

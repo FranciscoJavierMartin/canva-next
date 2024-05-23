@@ -13,3 +13,5 @@ type InfoComponent = {
   image: string;
   setCurrentComponent: Dispatch<SetStateAction<object>>;
 };
+
+type Shape = 'rect' | 'circle' | 'triangle';

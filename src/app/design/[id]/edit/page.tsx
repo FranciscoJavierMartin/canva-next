@@ -112,6 +112,7 @@ export default function EditDesignPage() {
   ]);
   const [color, setColor] = useState<string>('#fff');
   const [image, setImage] = useState<string>('');
+  const [rotate, setRotate] = useState<number>(0);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -143,6 +144,28 @@ export default function EditDesignPage() {
     component.image = '';
     setImage('');
     setComponents([...temp, component]);
+  }
+
+  function createShape(name: string, type: Shape): void {
+    const style = {
+      id: Date.now(),
+      name,
+      type,
+      left: 10,
+      top: 10,
+      opacity: 1,
+      width: 200,
+      height: 150,
+      rotate,
+      z_index: 2,
+      color: '#3c3c3d',
+      setCurrentComponent,
+      moveElement,
+      resizeElement,
+      rotateElement,
+    };
+
+    setComponents([...components, style]);
   }
 
   useEffect(() => {
@@ -203,12 +226,19 @@ export default function EditDesignPage() {
             )}
             {state === 'shape' && (
               <div className='grid grid-cols-3 gap-2'>
-                <div className='h-[90px] cursor-pointer bg-[#3c3c3d]'></div>
-                <div className='h-[90px] cursor-pointer rounded-full bg-[#3c3c3d]'></div>
-                <div
+                <button
+                  onClick={() => createShape('shape', 'rect')}
+                  className='h-[90px] cursor-pointer bg-[#3c3c3d]'
+                ></button>
+                <button
+                  onClick={() => createShape('shape', 'circle')}
+                  className='h-[90px] cursor-pointer rounded-full bg-[#3c3c3d]'
+                ></button>
+                <button
+                  onClick={() => createShape('shape', 'triangle')}
                   className='h-[90px] cursor-pointer bg-[#3c3c3d]'
                   style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%' }}
-                ></div>
+                ></button>
               </div>
             )}
             {state === 'image' && <MyImages />}
