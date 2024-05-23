@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 
 type CreateComponentProps = {
   info: InfoComponent;
@@ -50,7 +51,16 @@ export default function CreateComponent({
           transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
         }}
         className='group absolute hover:border-[2px] hover:border-indigo-500'
-      ></div>
+      >
+        {currentComponent?.id === info.id && (
+          <div
+            onClick={() => removeComponent(info.id)}
+            className='absolute top-0 hidden cursor-pointer rounded-md bg-white px-3 py-2 group-hover:block'
+          >
+            <FaTrashAlt />
+          </div>
+        )}
+      </div>
     );
   }
 

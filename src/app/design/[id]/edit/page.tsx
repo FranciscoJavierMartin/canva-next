@@ -134,8 +134,10 @@ export default function EditDesignPage() {
     console.log('Rotate element');
   }
 
-  function removeElement(): void {
-    console.log('Remove component');
+  function removeElement(id: number): void {
+    const temp = components.filter((c) => c.id !== id);
+    setCurrentComponent(undefined);
+    setComponents(temp);
   }
 
   function removeBackground(): void {
