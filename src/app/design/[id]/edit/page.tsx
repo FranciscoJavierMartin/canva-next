@@ -98,7 +98,10 @@ export default function EditDesignPage() {
           {items.map((item) => (
             <button
               key={item.title}
-              className='flex h-[80px] w-full cursor-pointer flex-col items-center justify-center gap-1 hover:text-gray-100'
+              className={clsx(
+                'flex h-[80px] w-full cursor-pointer flex-col items-center justify-center gap-1 hover:text-gray-100',
+                show.name === item.name && 'bg-[#252627]',
+              )}
               onClick={() => setElements(item.type, item.name)}
             >
               <span className='text-2xl'>{item.icon}</span>
