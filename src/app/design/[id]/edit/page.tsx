@@ -82,8 +82,20 @@ export default function EditDesignPage() {
     status: true,
     name: '',
   });
-  const [currentComponent, setCurrentComponent] = useState<object>({});
-  const [components, setComponents] = useState<object[]>([
+  const [currentComponent, setCurrentComponent] = useState<
+    InfoComponent | undefined
+  >({
+    name: 'main_frame',
+    type: 'rect',
+    id: Math.floor(Math.random() * 1000 + 1),
+    height: 500,
+    width: 650,
+    z_index: 1,
+    color: '#fff',
+    image: '',
+    setCurrentComponent: () => {},
+  });
+  const [components, setComponents] = useState<InfoComponent[]>([
     {
       name: 'main_frame',
       type: 'rect',
@@ -96,6 +108,7 @@ export default function EditDesignPage() {
       setCurrentComponent,
     },
   ]);
+  const [color, setColor] = useState<string>('');
 
   function setElements(type: ElementType, name: string) {
     setState(type);
@@ -216,7 +229,6 @@ export default function EditDesignPage() {
                 },
               )}
             >
-              {/* TODO: Add width and height */}
               <div className='flex min-h-[500px] min-w-[650px] items-center justify-center overflow-hidden'>
                 <div
                   id='main_design'
@@ -233,6 +245,32 @@ export default function EditDesignPage() {
                 </div>
               </div>
             </div>
+            {currentComponent && (
+              <div className='h-full w-[250px] bg-[#252627] px-3 py-2 text-gray-300'>
+                <div className='flex h-full flex-col items-start justify-start gap-6 px-3'>
+                  <div className='mt-4 flex items-start justify-start gap-4'>
+                    <span>Color:</span>
+                    <label
+                      htmlFor='color'
+                      className='size-[30px] cursor-pointer rounded-sm'
+                      style={{
+                        backgroundColor:
+                          currentComponent.color &&
+                          currentComponent.color !== '#fff'
+                            ? currentComponent.color
+                            : 'gray',
+                      }}
+                    ></label>
+                    <input
+                      id='color'
+                      type='color'
+                      className='invisible'
+                      onChange={(e) => setColor(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
