@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsImages } from 'react-icons/bs';
 import {
   FaCloudUploadAlt,
@@ -82,6 +82,7 @@ export default function EditDesignPage() {
     status: true,
     name: '',
   });
+  //TODO: Should be an empty object
   const [currentComponent, setCurrentComponent] = useState<
     InfoComponent | undefined
   >({
@@ -96,19 +97,21 @@ export default function EditDesignPage() {
     setCurrentComponent: () => {},
   });
   const [components, setComponents] = useState<InfoComponent[]>([
-    {
-      name: 'main_frame',
-      type: 'rect',
-      id: Math.floor(Math.random() * 1000 + 1),
-      height: 500,
-      width: 650,
-      z_index: 1,
-      color: '#fff',
-      image: '',
-      setCurrentComponent,
-    },
+    currentComponent!,
+    // {
+    //   name: 'main_frame',
+    //   type: 'rect',
+    //   id: Math.floor(Math.random() * 1000 + 1),
+    //   height: 500,
+    //   width: 650,
+    //   z_index: 1,
+    //   color: '#fff',
+    //   image: '',
+    //   setCurrentComponent,
+    // },
   ]);
-  const [color, setColor] = useState<string>('');
+  const [color, setColor] = useState<string>('#fff');
+  const [image, setImage] = useState<string>('');
 
   function setElements(type: ElementType, name: string) {
     setState(type);
@@ -133,6 +136,21 @@ export default function EditDesignPage() {
   function removeElement() {
     console.log('Remove component');
   }
+
+  useEffect(() => {
+    if (currentComponent) {
+      const index = components.findIndex((c) => c.id === currentComponent.id);
+      const temp = components.filter((c) => c.id !== currentComponent.id);
+
+      if (currentComponent.name === 'main_frame' && image) {
+        components[index].image = image || currentComponent.image;
+      }
+
+      components[index].color = color || currentComponent.color;
+
+      setComponents([...temp, components[index]]);
+    }
+  }, [color, image]);
 
   return (
     <div className='h-screen w-screen bg-black'>
@@ -207,6 +225,9 @@ export default function EditDesignPage() {
                     <div
                       key={i}
                       className='h-[90px] w-full cursor-pointer overflow-hidden rounded-sm'
+                      onClick={() =>
+                        setImage('http://localhost:4200/proxy-image.jpg')
+                      }
                     >
                       <img
                         className='size-full object-fill'
