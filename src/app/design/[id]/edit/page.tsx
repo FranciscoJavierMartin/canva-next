@@ -113,7 +113,7 @@ export default function EditDesignPage() {
   const [color, setColor] = useState<string>('#fff');
   const [image, setImage] = useState<string>('');
 
-  function setElements(type: ElementType, name: string) {
+  function setElements(type: ElementType, name: string): void {
     setState(type);
     setShow({
       status: false,
@@ -121,20 +121,28 @@ export default function EditDesignPage() {
     });
   }
 
-  function moveElement() {
+  function moveElement(): void {
     console.log('Move element');
   }
 
-  function resizeElement() {
+  function resizeElement(): void {
     console.log('Resize element');
   }
 
-  function rotateElement() {
+  function rotateElement(): void {
     console.log('Rotate element');
   }
 
-  function removeElement() {
+  function removeElement(): void {
     console.log('Remove component');
+  }
+
+  function removeBackground(): void {
+    const component = components.find((c) => c.id === currentComponent?.id)!;
+    const temp = components.filter((c) => c.id !== currentComponent?.id)!;
+    component.image = '';
+    setImage('');
+    setComponents([...temp, component]);
   }
 
   useEffect(() => {
@@ -148,6 +156,7 @@ export default function EditDesignPage() {
 
       components[index].color = color || currentComponent.color;
 
+      // TODO: Use 'prev'
       setComponents([...temp, components[index]]);
     }
   }, [color, image]);
@@ -289,6 +298,15 @@ export default function EditDesignPage() {
                       onChange={(e) => setColor(e.target.value)}
                     />
                   </div>
+                  {currentComponent.name === 'main_frame' &&
+                    currentComponent.image && (
+                      <button
+                        className='cursor-pointer bg-slate-600 p-1.5 text-white'
+                        onClick={removeBackground}
+                      >
+                        Remove background
+                      </button>
+                    )}
                 </div>
               </div>
             )}
