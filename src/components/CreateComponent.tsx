@@ -1,4 +1,4 @@
-import React, { Attributes, HTMLAttributes, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 type CreateComponentProps = {
   info: any;
