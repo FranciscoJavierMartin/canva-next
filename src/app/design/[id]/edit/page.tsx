@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { BsImages } from 'react-icons/bs';
 import {
   FaCloudUploadAlt,
@@ -10,9 +11,23 @@ import { LuLayoutTemplate } from 'react-icons/lu';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { RxTransparencyGrid } from 'react-icons/rx';
 import Header from '@/components/Header';
-import { useState } from 'react';
+import TemplateDesign from '@/components/TemplateDesign';
 
-const items = [
+type ElementType =
+  | 'design'
+  | 'shape'
+  | 'image'
+  | 'text'
+  | 'project'
+  | 'initImage'
+  | 'background';
+
+const items: {
+  title: string;
+  icon: JSX.Element;
+  type: ElementType;
+  name: string;
+}[] = [
   {
     title: 'Design',
     icon: <LuLayoutTemplate />,
@@ -58,13 +73,13 @@ const items = [
 ];
 
 export default function EditDesignPage() {
-  const [state, setState] = useState('');
+  const [state, setState] = useState<ElementType | undefined>(undefined);
   const [show, setShow] = useState({
     status: true,
     name: '',
   });
 
-  function setElements(type: string, name: string) {
+  function setElements(type: ElementType, name: string) {
     setState(type);
     setShow({
       status: false,
@@ -89,6 +104,7 @@ export default function EditDesignPage() {
           ))}
         </div>
         <div className='h-full w-[calc(100%-80px)]'>
+          {/* TODO: Add styles to close */}
           <div className='fixed left-[80px] z-30 h-full w-[350px]  bg-[#252627] px-8 py-5 transition-all duration-700'>
             <button
               onClick={() => setShow({ name: '', status: true })}
@@ -96,6 +112,41 @@ export default function EditDesignPage() {
             >
               <MdKeyboardArrowLeft />
             </button>
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+                <TemplateDesign />
+              </div>
+            )}
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+
+              </div>
+            )}
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+
+              </div>
+            )}
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+
+              </div>
+            )}
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+
+              </div>
+            )}
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+
+              </div>
+            )}
+            {state === 'design' && (
+              <div className='grid grid-cols-2 gap-2'>
+
+              </div>
+            )}
           </div>
         </div>
       </div>
