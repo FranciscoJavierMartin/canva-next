@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 // TODO: Review if tags used are correct
 // TODO: Fold sidebar when click on shape
 // TODO: Move Edit page to panel. Avoid 'client page'
+// TODO: Move addListeners to proper element instead of window
 export default function RootLayout({
   children,
 }: Readonly<{

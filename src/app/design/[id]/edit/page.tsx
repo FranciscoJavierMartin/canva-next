@@ -195,8 +195,56 @@ export default function EditDesignPage() {
     window.addEventListener('mouseup', mouseUp);
   }
 
-  function rotateElement(): void {
-    console.log('Rotate element');
+  function rotateElement(id: string, currentInfo: InfoComponent): void {
+    let isMoving: boolean = true;
+    setCurrentComponent(currentInfo);
+
+    const currentDiv = document.getElementById(id);
+
+    function mouseMove({ movementX, movementY }: MouseEvent): void {
+      if (currentDiv) {
+        const getStyle = window.getComputedStyle(currentDiv);
+        const rotation = getStyle.transform;
+        const values = rotation.split('(')[1].split(')')[0].split(',');
+        const angle = Math.round(
+          Math.atan2(
+            parseInt(values[1]),
+            parseInt(values[0]) * (180 / Math.PI),
+          ),
+        );
+
+        const deg = (angle < 0 ? angle + 360 : angle) + (movementX ?? 0);
+        currentDiv.style.transform = `rotate(${deg}deg)`;
+        // if (isMoving) {
+        //   currentDiv.style.width = `${width + movementX}px`;
+        //   currentDiv.style.height = `${height + movementY}px`;
+        // }
+      }
+    }
+
+    function mouseUp(): void {
+      isMoving = false;
+      window.removeEventListener('mousemove', mouseMove);
+      window.removeEventListener('mouseup', mouseUp);
+      if (currentDiv) {
+        const getStyle = window.getComputedStyle(currentDiv);
+        const rotation = getStyle.transform;
+        const values = rotation.split('(')[1].split(')')[0].split(',');
+        const angle = Math.round(
+          Math.atan2(
+            parseInt(values[1]),
+            parseInt(values[0]) * (180 / Math.PI),
+          ),
+        );
+        const deg = angle < 0 ? angle + 360 : angle;
+        setRotate(deg);
+      }
+      // setWidth(parseInt(currentDiv?.style.width || '0'));
+      // setHeight(parseInt(currentDiv?.style.height || '0'));
+    }
+
+    window.addEventListener('mousemove', mouseMove);
+    window.addEventListener('mouseup', mouseUp);
   }
 
   function removeElement(id: number): void {
@@ -244,6 +292,7 @@ export default function EditDesignPage() {
       if (currentComponent.name !== 'text') {
         components[index].width = width || currentComponent.width;
         components[index].height = height || currentComponent.height;
+        components[index].rotate = rotate || currentComponent.rotate;
       }
 
       if (currentComponent.name === 'main_frame') {
@@ -261,6 +310,7 @@ export default function EditDesignPage() {
       setColor('');
       setLeft(0);
       setTop(0);
+      setRotate(0);
     }
   }, [color, image, left, top, width, height]);
 

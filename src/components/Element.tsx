@@ -6,7 +6,7 @@ type ElementProps = {
 
 export default function Element({ id, info, exId }: ElementProps) {
   // TODO: Check exId
-  // TODO: Change rotate cursor icon
+  // TODO: Change rotate cursor icon (Tailwind class cursor-nesw-resize)
   return (
     <>
       {exId ? (
