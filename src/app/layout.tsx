@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 // TODO: Add logo image to assets
 // TODO: Review if tags used are correct
 // TODO: Fold sidebar when click on shape
+// TODO: Move Edit page to panel. Avoid 'client page'
 export default function RootLayout({
   children,
 }: Readonly<{

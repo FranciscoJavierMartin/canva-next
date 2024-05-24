@@ -122,6 +122,8 @@ export default function EditDesignPage() {
   const [rotate, setRotate] = useState<number>(0);
   const [left, setLeft] = useState<number>(0);
   const [top, setTop] = useState<number>(0);
+  const [width, setWidth] = useState<number>(0);
+  const [height, setHeight] = useState<number>(0);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -132,8 +134,8 @@ export default function EditDesignPage() {
   }
 
   function moveElement(id: string, currentInfo: InfoComponent): void {
-    setCurrentComponent(currentInfo);
     let isMoving: boolean = true;
+    setCurrentComponent(currentInfo);
 
     const currentDiv = document.getElementById(id);
 
@@ -162,8 +164,35 @@ export default function EditDesignPage() {
     window.addEventListener('mouseup', mouseUp);
   }
 
-  function resizeElement(): void {
-    console.log('Resize element');
+  function resizeElement(id: string, currentInfo: InfoComponent): void {
+    let isMoving: boolean = true;
+    setCurrentComponent(currentInfo);
+
+    const currentDiv = document.getElementById(id);
+
+    function mouseMove({ movementX, movementY }: MouseEvent): void {
+      if (currentDiv) {
+        const getStyle = window.getComputedStyle(currentDiv);
+        const width = parseInt(getStyle.width);
+        const height = parseInt(getStyle.height);
+
+        if (isMoving) {
+          currentDiv.style.width = `${width + movementX}px`;
+          currentDiv.style.height = `${height + movementY}px`;
+        }
+      }
+    }
+
+    function mouseUp(): void {
+      isMoving = false;
+      window.removeEventListener('mousemove', mouseMove);
+      window.removeEventListener('mouseup', mouseUp);
+      setWidth(parseInt(currentDiv?.style.width || '0'));
+      setHeight(parseInt(currentDiv?.style.height || '0'));
+    }
+
+    window.addEventListener('mousemove', mouseMove);
+    window.addEventListener('mouseup', mouseUp);
   }
 
   function rotateElement(): void {
@@ -212,6 +241,11 @@ export default function EditDesignPage() {
       const index = components.findIndex((c) => c.id === currentComponent.id);
       const temp = components.filter((c) => c.id !== currentComponent.id);
 
+      if (currentComponent.name !== 'text') {
+        components[index].width = width || currentComponent.width;
+        components[index].height = height || currentComponent.height;
+      }
+
       if (currentComponent.name === 'main_frame') {
         components[index].left = left || currentComponent.left;
         components[index].top = top || currentComponent.top;
@@ -228,7 +262,7 @@ export default function EditDesignPage() {
       setLeft(0);
       setTop(0);
     }
-  }, [color, image, left, top]);
+  }, [color, image, left, top, width, height]);
 
   return (
     <div className='h-screen w-screen bg-black'>
