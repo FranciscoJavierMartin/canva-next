@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
+import Element from './Element';
 
 type CreateComponentProps = {
   info: InfoComponent;
@@ -52,6 +53,7 @@ export default function CreateComponent({
         }}
         className='group absolute hover:border-[2px] hover:border-indigo-500'
       >
+        <Element id={randValue} info={info} exId='' />
         {currentComponent?.id === info.id && (
           <div
             onClick={() => removeComponent(info.id)}
@@ -87,6 +89,7 @@ export default function CreateComponent({
             opacity: info.opacity,
           }}
         ></div>
+        <Element id={randValue} info={info} exId={`${randValue}c`} />
         {/* TODO: Move to component */}
         {currentComponent?.id === info.id && (
           <div
@@ -123,6 +126,7 @@ export default function CreateComponent({
             clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
           }}
         ></div>
+        <Element id={randValue} info={info} exId={`${randValue}t`} />
         {/* TODO: Move to component */}
         {currentComponent?.id === info.id && (
           <div
