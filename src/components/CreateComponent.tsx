@@ -64,5 +64,77 @@ export default function CreateComponent({
     );
   }
 
+  if (info.name === 'shape' && info.type === 'circle') {
+    html = (
+      <div
+        id={randValue}
+        onClick={() => info.setCurrentComponent(info)}
+        style={{
+          left: info.left + 'px',
+          top: info.top + 'px',
+          zIndex: info.z_index,
+          transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
+        }}
+        className='group absolute hover:border-2 hover:border-indigo-500'
+      >
+        <div
+          id={`${randValue}c`}
+          className='rounded-full'
+          style={{
+            width: info.width + 'px',
+            height: info.width + 'px',
+            background: info.color,
+            opacity: info.opacity,
+          }}
+        ></div>
+        {/* TODO: Move to component */}
+        {currentComponent?.id === info.id && (
+          <div
+            onClick={() => removeComponent(info.id)}
+            className='absolute top-0 hidden cursor-pointer rounded-md bg-white px-3 py-2 group-hover:block'
+          >
+            <FaTrashAlt />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (info.name === 'shape' && info.type === 'triangle') {
+    html = (
+      <div
+        id={randValue}
+        onClick={() => info.setCurrentComponent(info)}
+        style={{
+          left: info.left + 'px',
+          top: info.top + 'px',
+          zIndex: info.z_index,
+          transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
+        }}
+        className='group absolute hover:border-2 hover:border-indigo-500'
+      >
+        <div
+          id={`${randValue}t`}
+          style={{
+            width: info.width + 'px',
+            height: info.width + 'px',
+            background: info.color,
+            opacity: info.opacity,
+            clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
+          }}
+        ></div>
+        {/* TODO: Move to component */}
+        {currentComponent?.id === info.id && (
+          <div
+            onClick={() => removeComponent(info.id)}
+            className='absolute top-0 hidden cursor-pointer rounded-md bg-white px-3 py-2 group-hover:block'
+          >
+            <FaTrashAlt />
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return html;
 }

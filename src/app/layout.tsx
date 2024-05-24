@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   description: 'Make you designs',
 };
 
+// TODO: Add uuid for id
+// TODO: Add colors to tailwind.config
+// TODO: Study raw measures if can be changed by provided values
+// TODO: Refactor common styles
+// TODO: Add dark/light mode
+// TODO: Replace icons to react/icons
+// TODO: Create component for removeElement feature
+// TODO: Add properties to InfoComponent
+// TODO: Type properly 'type' and 'name' in InfoComponent
+// TODO: Add logo image to assets
+// TODO: Review if tags used are correct
 export default function RootLayout({
   children,
 }: Readonly<{

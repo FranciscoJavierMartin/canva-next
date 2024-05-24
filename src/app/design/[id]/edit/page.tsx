@@ -149,6 +149,7 @@ export default function EditDesignPage() {
   }
 
   function createShape(name: string, type: Shape): void {
+    //TODO: Add to InfoComponent
     const style = {
       id: Date.now(),
       name,
@@ -181,7 +182,6 @@ export default function EditDesignPage() {
 
       components[index].color = color || currentComponent.color;
 
-      // TODO: Use 'prev'
       setComponents([...temp, components[index]]);
     }
   }, [color, image]);
