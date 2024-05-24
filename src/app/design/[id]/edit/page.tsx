@@ -94,7 +94,14 @@ export default function EditDesignPage() {
     z_index: 1,
     color: '#fff',
     image: '',
+    opacity: 100,
+    left: 0,
+    rotate: 0,
+    top: 0,
     setCurrentComponent: () => {},
+    resizeElement: (id: string, info: InfoComponent) => {},
+    moveElement: (id: string, info: InfoComponent) => {},
+    rotateElement: (id: string, info: InfoComponent) => {},
   });
   const [components, setComponents] = useState<InfoComponent[]>([
     currentComponent!,
@@ -122,8 +129,23 @@ export default function EditDesignPage() {
     });
   }
 
-  function moveElement(): void {
-    console.log('Move element');
+  function moveElement(id: string, currentInfo: InfoComponent): void {
+    setCurrentComponent(currentInfo);
+    let isMoving: boolean = true;
+
+    const currentDiv = document.getElementById(id);
+
+    //TODO: Move outside
+    function mouseMove(): void {
+      if (currentDiv) {
+        const getStyle = window.getComputedStyle(currentDiv);
+      }
+    }
+
+    function mouseUp(): void {}
+
+    window.addEventListener('mousemove', mouseMove);
+    window.addEventListener('mouseup', mouseUp);
   }
 
   function resizeElement(): void {

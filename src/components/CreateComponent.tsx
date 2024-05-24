@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import Element from './Element';
+import Element from '@/components/Element';
 
 type CreateComponentProps = {
   info: InfoComponent;

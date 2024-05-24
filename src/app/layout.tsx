@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 // TODO: Type properly 'type' and 'name' in InfoComponent
 // TODO: Add logo image to assets
 // TODO: Review if tags used are correct
+// TODO: Fold sidebar when click on shape
 export default function RootLayout({
   children,
 }: Readonly<{
