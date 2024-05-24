@@ -203,18 +203,32 @@ export default function EditDesignPage() {
 
     function mouseMove({ movementX, movementY }: MouseEvent): void {
       if (currentDiv) {
-        const getStyle = window.getComputedStyle(currentDiv);
-        const rotation = getStyle.transform;
-        const values = rotation.split('(')[1].split(')')[0].split(',');
-        const angle = Math.round(
-          Math.atan2(
-            parseInt(values[1]),
-            parseInt(values[0]) * (180 / Math.PI),
-          ),
-        );
+        const obj = window.getComputedStyle(currentDiv, null);
+        const matrix =
+          obj.getPropertyValue('-webkit-transform') ||
+          obj.getPropertyValue('-moz-transform') ||
+          obj.getPropertyValue('-ms-transform') ||
+          obj.getPropertyValue('-o-transform') ||
+          obj.getPropertyValue('transform');
 
-        const deg = (angle < 0 ? angle + 360 : angle) + (movementX ?? 0);
-        currentDiv.style.transform = `rotate(${deg}deg)`;
+        let angle = 0;
+
+        if (matrix !== 'none') {
+          const values = matrix.split('(')[1].split(')')[0].split(',');
+          const a = parseFloat(values[0]);
+          const b = parseFloat(values[1]);
+          angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+        }
+
+        angle = angle < 0 ? (angle += 360) : angle;
+
+        // const deg = (angle < 0 ? angle + 360 : angle) + (movementX ?? 0);
+        const deg = angle;
+        console.log(angle)
+        // console.log({ values, angle, deg, movementX });
+        if (isMoving) {
+          currentDiv.style.transform = `rotate(${deg}deg)`;
+        }
         // if (isMoving) {
         //   currentDiv.style.width = `${width + movementX}px`;
         //   currentDiv.style.height = `${height + movementY}px`;
@@ -224,8 +238,7 @@ export default function EditDesignPage() {
 
     function mouseUp(): void {
       isMoving = false;
-      window.removeEventListener('mousemove', mouseMove);
-      window.removeEventListener('mouseup', mouseUp);
+
       if (currentDiv) {
         const getStyle = window.getComputedStyle(currentDiv);
         const rotation = getStyle.transform;
@@ -238,7 +251,10 @@ export default function EditDesignPage() {
         );
         const deg = angle < 0 ? angle + 360 : angle;
         setRotate(deg);
+        // console.log({ values, angle, deg });
       }
+      window.removeEventListener('mousemove', mouseMove);
+      window.removeEventListener('mouseup', mouseUp);
       // setWidth(parseInt(currentDiv?.style.width || '0'));
       // setHeight(parseInt(currentDiv?.style.height || '0'));
     }
@@ -312,7 +328,7 @@ export default function EditDesignPage() {
       setTop(0);
       setRotate(0);
     }
-  }, [color, image, left, top, width, height]);
+  }, [color, image, left, top, width, height, rotate]);
 
   return (
     <div className='h-screen w-screen bg-black'>
