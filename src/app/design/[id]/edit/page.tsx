@@ -120,6 +120,8 @@ export default function EditDesignPage() {
   const [color, setColor] = useState<string>('#fff');
   const [image, setImage] = useState<string>('');
   const [rotate, setRotate] = useState<number>(0);
+  const [left, setLeft] = useState<number>(0);
+  const [top, setTop] = useState<number>(0);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -135,14 +137,26 @@ export default function EditDesignPage() {
 
     const currentDiv = document.getElementById(id);
 
-    //TODO: Move outside
-    function mouseMove(): void {
+    function mouseMove({ movementX, movementY }: MouseEvent): void {
       if (currentDiv) {
         const getStyle = window.getComputedStyle(currentDiv);
+        const left = parseInt(getStyle.left);
+        const top = parseInt(getStyle.top);
+
+        if (isMoving) {
+          currentDiv.style.left = `${left + movementX}px`;
+          currentDiv.style.top = `${top + movementY}px`;
+        }
       }
     }
 
-    function mouseUp(): void {}
+    function mouseUp(): void {
+      isMoving = false;
+      window.removeEventListener('mousemove', mouseMove);
+      window.removeEventListener('mouseup', mouseUp);
+      setLeft(parseInt(currentDiv?.style.left || '0'));
+      setTop(parseInt(currentDiv?.style.top || '0'));
+    }
 
     window.addEventListener('mousemove', mouseMove);
     window.addEventListener('mouseup', mouseUp);
@@ -198,15 +212,23 @@ export default function EditDesignPage() {
       const index = components.findIndex((c) => c.id === currentComponent.id);
       const temp = components.filter((c) => c.id !== currentComponent.id);
 
-      if (currentComponent.name === 'main_frame' && image) {
-        components[index].image = image || currentComponent.image;
+      if (currentComponent.name === 'main_frame') {
+        components[index].left = left || currentComponent.left;
+        components[index].top = top || currentComponent.top;
+
+        if (image) {
+          components[index].image = image || currentComponent.image;
+        }
       }
 
       components[index].color = color || currentComponent.color;
 
       setComponents([...temp, components[index]]);
+      setColor('');
+      setLeft(0);
+      setTop(0);
     }
-  }, [color, image]);
+  }, [color, image, left, top]);
 
   return (
     <div className='h-screen w-screen bg-black'>
