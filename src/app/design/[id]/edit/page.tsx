@@ -201,62 +201,36 @@ export default function EditDesignPage() {
 
     const currentDiv = document.getElementById(id);
 
-    function mouseMove({ movementX, movementY }: MouseEvent): void {
+    function mouseMove({ pageX, pageY }: MouseEvent): void {
       if (currentDiv) {
-        const obj = window.getComputedStyle(currentDiv, null);
-        const matrix =
-          obj.getPropertyValue('-webkit-transform') ||
-          obj.getPropertyValue('-moz-transform') ||
-          obj.getPropertyValue('-ms-transform') ||
-          obj.getPropertyValue('-o-transform') ||
-          obj.getPropertyValue('transform');
+        const boundingRect = currentDiv.getBoundingClientRect();
+        const figureCenter = {
+          x: boundingRect.left + boundingRect.width / 2,
+          y: boundingRect.top + boundingRect.height / 2,
+        };
 
-        let angle = 0;
+        const angle =
+          Math.atan2(pageX - figureCenter.x, -(pageY - figureCenter.y)) *
+          (180 / Math.PI);
 
-        if (matrix !== 'none') {
-          const values = matrix.split('(')[1].split(')')[0].split(',');
-          const a = parseFloat(values[0]);
-          const b = parseFloat(values[1]);
-          angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-        }
-
-        angle = angle < 0 ? (angle += 360) : angle;
-
-        // const deg = (angle < 0 ? angle + 360 : angle) + (movementX ?? 0);
-        const deg = angle;
-        console.log(angle)
-        // console.log({ values, angle, deg, movementX });
         if (isMoving) {
-          currentDiv.style.transform = `rotate(${deg}deg)`;
+          currentDiv.style.transform = `rotate(${angle}deg)`;
         }
-        // if (isMoving) {
-        //   currentDiv.style.width = `${width + movementX}px`;
-        //   currentDiv.style.height = `${height + movementY}px`;
-        // }
       }
     }
 
     function mouseUp(): void {
       isMoving = false;
-
-      if (currentDiv) {
-        const getStyle = window.getComputedStyle(currentDiv);
-        const rotation = getStyle.transform;
-        const values = rotation.split('(')[1].split(')')[0].split(',');
-        const angle = Math.round(
-          Math.atan2(
-            parseInt(values[1]),
-            parseInt(values[0]) * (180 / Math.PI),
-          ),
-        );
-        const deg = angle < 0 ? angle + 360 : angle;
-        setRotate(deg);
-        // console.log({ values, angle, deg });
-      }
       window.removeEventListener('mousemove', mouseMove);
       window.removeEventListener('mouseup', mouseUp);
-      // setWidth(parseInt(currentDiv?.style.width || '0'));
-      // setHeight(parseInt(currentDiv?.style.height || '0'));
+      const angle = parseFloat(
+        currentDiv?.style.transform
+          .split('(')[1]
+          .split(')')[0]
+          .split(',')[0]
+          .replace('deg', '') || '0',
+      );
+      setRotate(angle);
     }
 
     window.addEventListener('mousemove', mouseMove);
