@@ -247,8 +247,6 @@ export default function EditDesignPage() {
     setComponents([...temp, component]);
   }
 
-  function opacityHandle(): void {}
-
   function createShape(name: string, type: Shape): void {
     const style: InfoComponent = {
       id: Date.now(),
@@ -334,7 +332,8 @@ export default function EditDesignPage() {
       setTop(0);
       setRotate(0);
       // TODO: Check setOpacity(1)
-      setZIndex(0)
+      setOpacity(1);
+      setZIndex(0);
     }
   }, [color, image, left, top, width, height, rotate, opacity, zIndex]);
 

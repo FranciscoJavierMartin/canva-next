@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 // TODO: Move addListeners to proper element instead of window
 // TODO: Add consts with default values for components
 // TODO: Add more interfaces InfoComponent depending of the element to add
+// FIXME: Fix opacity with slider
 export default function RootLayout({
   children,
 }: Readonly<{
