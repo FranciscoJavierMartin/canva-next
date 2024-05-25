@@ -282,7 +282,7 @@ export default function EditDesignPage() {
       top: 10,
       opacity: 1,
       rotate,
-      z_index: 10,
+      z_index: 1,
       padding: 6,
       fontSize: 22,
       text: 'Add you text',
@@ -516,7 +516,7 @@ export default function EditDesignPage() {
                           max={9999}
                           step={1}
                           value={currentComponent.z_index}
-                          className='flex-grow'
+                          className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 outline-none text-right'
                         />
                       </div>
                     </div>
