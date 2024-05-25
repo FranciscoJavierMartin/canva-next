@@ -333,6 +333,7 @@ export default function EditDesignPage() {
       setLeft(0);
       setTop(0);
       setRotate(0);
+      // TODO: Check setOpacity(1)
       setZIndex(0)
     }
   }, [color, image, left, top, width, height, rotate, opacity, zIndex]);
