@@ -323,6 +323,7 @@ export default function EditDesignPage() {
         components[index].left = left || currentComponent.left;
         components[index].top = top || currentComponent.top;
         components[index].opacity = opacity || currentComponent.opacity;
+        components[index].z_index = zIndex || currentComponent.z_index;
       }
 
       components[index].color = color || currentComponent.color;
@@ -333,7 +334,7 @@ export default function EditDesignPage() {
       setTop(0);
       setRotate(0);
     }
-  }, [color, image, left, top, width, height, rotate, opacity]);
+  }, [color, image, left, top, width, height, rotate, opacity, zIndex]);
 
   return (
     <div className='h-screen w-screen bg-black'>
@@ -492,7 +493,7 @@ export default function EditDesignPage() {
                       </button>
                     )}
                   {currentComponent?.name !== 'main_frame' && (
-                    <div className='flex gap-6'>
+                    <div className='flex flex-col gap-6'>
                       <div className='flex items-center justify-start gap-3'>
                         <span>Opacity</span>
                         <input
@@ -502,8 +503,20 @@ export default function EditDesignPage() {
                           }
                           min={0}
                           max={1}
-                          value={currentComponent.opacity}
                           step={0.05}
+                          value={currentComponent.opacity}
+                        />
+                      </div>
+                      <div className='flex items-start justify-start gap-1'>
+                        <span className='w-[70px]'>Z-Index</span>
+                        <input
+                          onChange={(e) => setZIndex(parseInt(e.target.value))}
+                          type='number'
+                          min={0}
+                          max={9999}
+                          step={1}
+                          value={currentComponent.z_index}
+                          className='flex-grow'
                         />
                       </div>
                     </div>
