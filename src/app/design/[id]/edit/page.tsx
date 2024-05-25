@@ -317,13 +317,13 @@ export default function EditDesignPage() {
       if (currentComponent.name === 'main_frame') {
         components[index].left = left || currentComponent.left;
         components[index].top = top || currentComponent.top;
-        components[index].opacity = opacity || currentComponent.opacity;
 
         if (image) {
           components[index].image = image || currentComponent.image;
         }
       }
 
+      components[index].opacity = opacity || currentComponent.opacity;
       components[index].color = color || currentComponent.color;
 
       setComponents([...temp, components[index]]);
@@ -331,8 +331,6 @@ export default function EditDesignPage() {
       setLeft(0);
       setTop(0);
       setRotate(0);
-      //TODO:
-      // setOpacity(1);
     }
   }, [color, image, left, top, width, height, rotate, opacity]);
 
@@ -498,13 +496,12 @@ export default function EditDesignPage() {
                         <span>Opacity</span>
                         <input
                           type='range'
-                          onChange={(e) => {
-                            console.log(e.target.value);
-                            setOpacity(parseFloat(e.target.value));
-                          }}
+                          onChange={(e) =>
+                            setOpacity(parseFloat(e.target.value))
+                          }
                           min={0}
                           max={1}
-                          value={opacity}
+                          value={currentComponent.opacity}
                           step={0.05}
                         />
                       </div>
