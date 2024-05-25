@@ -494,8 +494,8 @@ export default function EditDesignPage() {
                     )}
                   {currentComponent?.name !== 'main_frame' && (
                     <div className='flex gap-6'>
-                      <div className='flex flex-col items-center justify-start gap-1'>
-                        <span className='w-[70px]'>Opacity</span>
+                      <div className='flex items-center justify-start gap-3'>
+                        <span>Opacity</span>
                         <input
                           type='range'
                           onChange={(e) => {
@@ -507,7 +507,6 @@ export default function EditDesignPage() {
                           value={opacity}
                           step={0.05}
                         />
-                        <h6 className='text-white'>{opacity}</h6>
                       </div>
                     </div>
                   )}
