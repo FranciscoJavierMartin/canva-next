@@ -333,6 +333,7 @@ export default function EditDesignPage() {
       setLeft(0);
       setTop(0);
       setRotate(0);
+      setZIndex(0)
     }
   }, [color, image, left, top, width, height, rotate, opacity, zIndex]);
 
@@ -516,7 +517,7 @@ export default function EditDesignPage() {
                           max={9999}
                           step={1}
                           value={currentComponent.z_index}
-                          className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 outline-none text-right'
+                          className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                         />
                       </div>
                     </div>
