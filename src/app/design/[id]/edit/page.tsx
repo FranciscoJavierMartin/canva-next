@@ -117,7 +117,7 @@ export default function EditDesignPage() {
   const [fontSize, setFontSize] = useState<number>(16);
   const [weight, setWeight] = useState(400);
   const [text, setText] = useState<string>('');
-  const [opacity, setOpacity] = useState<number>(100);
+  const [opacity, setOpacity] = useState<number>(1);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -331,7 +331,8 @@ export default function EditDesignPage() {
       setLeft(0);
       setTop(0);
       setRotate(0);
-      setOpacity(100);
+      //TODO:
+      // setOpacity(1);
     }
   }, [color, image, left, top, width, height, rotate, opacity]);
 
@@ -493,9 +494,9 @@ export default function EditDesignPage() {
                     )}
                   {currentComponent?.name !== 'main_frame' && (
                     <div className='flex gap-6'>
-                      <div className='flex items-start justify-start gap-1'>
+                      <div className='flex items-center justify-start gap-1 flex-col'>
                         <span className='w-[70px]'>Opacity</span>
-                        <input
+                        {/* <input
                           onChange={(e) =>
                             setOpacity(parseFloat(e.target.value))
                           }
@@ -505,7 +506,20 @@ export default function EditDesignPage() {
                           min={0.1}
                           max={1}
                           value={currentComponent?.opacity}
+                        /> */}
+                        <input
+                          type='range'
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setOpacity(parseFloat(e.target.value) / 100);
+                          }}
+                          min={0}
+                          max={100}
+                          value={opacity * 100}
+                          step={1}
+                          className='range range-xs'
                         />
+                        <h6 className='text-white'>{opacity}</h6>
                       </div>
                     </div>
                   )}
