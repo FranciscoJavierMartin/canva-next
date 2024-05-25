@@ -15,6 +15,10 @@ type InfoComponent = {
   z_index: number;
   color: string;
   image: string;
+  padding: number;
+  fontSize: number;
+  text: string;
+  weight: number;
   setCurrentComponent: Dispatch<SetStateAction<object>>;
   resizeElement: (id: string, InfoComponent) => void;
   rotateElement: (id: string, InfoComponent) => void;

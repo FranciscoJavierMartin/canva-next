@@ -23,6 +23,8 @@ export const metadata: Metadata = {
 // TODO: Fold sidebar when click on shape
 // TODO: Move Edit page to panel. Avoid 'client page'
 // TODO: Move addListeners to proper element instead of window
+// TODO: Add consts with default values for components
+// TODO: Add more interfaces InfoComponent depending of the element to add
 export default function RootLayout({
   children,
 }: Readonly<{

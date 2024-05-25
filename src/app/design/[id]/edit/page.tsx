@@ -94,7 +94,7 @@ export default function EditDesignPage() {
     z_index: 1,
     color: '#fff',
     image: '',
-    opacity: 100,
+    opacity: 1,
     left: 0,
     rotate: 0,
     top: 0,
@@ -105,17 +105,6 @@ export default function EditDesignPage() {
   });
   const [components, setComponents] = useState<InfoComponent[]>([
     currentComponent!,
-    // {
-    //   name: 'main_frame',
-    //   type: 'rect',
-    //   id: Math.floor(Math.random() * 1000 + 1),
-    //   height: 500,
-    //   width: 650,
-    //   z_index: 1,
-    //   color: '#fff',
-    //   image: '',
-    //   setCurrentComponent,
-    // },
   ]);
   const [color, setColor] = useState<string>('#fff');
   const [image, setImage] = useState<string>('');
@@ -124,6 +113,10 @@ export default function EditDesignPage() {
   const [top, setTop] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
+  const [padding, setPadding] = useState<number>(0);
+  const [fontSize, setFontSize] = useState<number>(16);
+  const [weight, setWeight] = useState(400);
+  const [text, setText] = useState<string>('');
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -240,6 +233,7 @@ export default function EditDesignPage() {
   function removeElement(id: number): void {
     const temp = components.filter((c) => c.id !== id);
     setCurrentComponent(undefined);
+    // TODO: Use 'prev'
     setComponents(temp);
   }
 
@@ -252,8 +246,7 @@ export default function EditDesignPage() {
   }
 
   function createShape(name: string, type: Shape): void {
-    //TODO: Add to InfoComponent
-    const style = {
+    const style: InfoComponent = {
       id: Date.now(),
       name,
       type,
@@ -269,8 +262,41 @@ export default function EditDesignPage() {
       moveElement,
       resizeElement,
       rotateElement,
+      image: '',
     };
 
+    // TODO: Use 'prev'
+    setComponents([...components, style]);
+  }
+
+  function addText(name: string, type: any): void {
+    const style: InfoComponent = {
+      id: Date.now(),
+      name,
+      type,
+      left: 10,
+      top: 10,
+      opacity: 1,
+      rotate,
+      z_index: 10,
+      padding: 6,
+      fontSize: 22,
+      text: 'Add you text',
+      weight: 400,
+      color: '#3c3c3d',
+      height: 100,
+      width: 200,
+      image: '',
+      setCurrentComponent,
+      moveElement,
+      resizeElement,
+      rotateElement,
+    };
+
+    setWeight(400);
+    setFontSize(16);
+    setCurrentComponent(style);
+    // TODO: Use 'prev'
     setComponents([...components, style]);
   }
 
@@ -364,7 +390,10 @@ export default function EditDesignPage() {
             {state === 'image' && <MyImages />}
             {state === 'text' && (
               <div className='grid grid-cols-1 gap-2'>
-                <div className='cursor-pointer rounded-sm bg-[#3c3c3d] p-3 text-xl font-bold text-white'>
+                <div
+                  onClick={() => addText('text', 'title')}
+                  className='cursor-pointer rounded-sm bg-[#3c3c3d] p-3 text-xl font-bold text-white'
+                >
                   <h2>Add a text</h2>
                 </div>
               </div>
