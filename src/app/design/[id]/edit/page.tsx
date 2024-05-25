@@ -118,6 +118,7 @@ export default function EditDesignPage() {
   const [weight, setWeight] = useState(400);
   const [text, setText] = useState<string>('');
   const [opacity, setOpacity] = useState<number>(1);
+  const [zIndex, setZIndex] = useState<number>(1);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -314,16 +315,16 @@ export default function EditDesignPage() {
         components[index].rotate = rotate || currentComponent.rotate;
       }
 
-      if (currentComponent.name === 'main_frame') {
-        components[index].left = left || currentComponent.left;
-        components[index].top = top || currentComponent.top;
-
-        if (image) {
-          components[index].image = image || currentComponent.image;
-        }
+      if (currentComponent.name === 'main_frame' && image) {
+        components[index].image = image || currentComponent.image;
       }
 
-      components[index].opacity = opacity || currentComponent.opacity;
+      if (currentComponent.name !== 'main_frame') {
+        components[index].left = left || currentComponent.left;
+        components[index].top = top || currentComponent.top;
+        components[index].opacity = opacity || currentComponent.opacity;
+      }
+
       components[index].color = color || currentComponent.color;
 
       setComponents([...temp, components[index]]);
