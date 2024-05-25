@@ -103,6 +103,41 @@ export default function CreateComponent({
     );
   }
 
+  if (info.name === 'text') {
+    html = (
+      <div
+        id={randValue}
+        onClick={() => info.setCurrentComponent(info)}
+        style={{
+          left: `${info.left}px`,
+          top: `${info.top}px`,
+          zIndex: info.z_index,
+          transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
+          padding: `${info.padding}px`,
+          color: info.color,
+          opacity: info.opacity,
+        }}
+        className='group absolute hover:border-2 hover:border-indigo-500'
+      >
+        <Element id={randValue} info={info} exId='' />
+        <h2
+          className='size-full'
+          style={{ fontSize: `${info.fontSize}px`, fontWeight: info.weight }}
+        >
+          {info.text}
+        </h2>
+        {currentComponent?.id === info.id && (
+          <div
+            onClick={() => removeComponent(info.id)}
+            className='absolute top-0 hidden cursor-pointer rounded-md bg-white px-3 py-2 group-hover:block'
+          >
+            <FaTrashAlt />
+          </div>
+        )}
+      </div>
+    );
+  }
+
   if (info.name === 'shape' && info.type === 'triangle') {
     html = (
       <div
