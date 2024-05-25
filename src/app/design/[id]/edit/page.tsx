@@ -494,7 +494,7 @@ export default function EditDesignPage() {
                     )}
                   {currentComponent?.name !== 'main_frame' && (
                     <div className='flex gap-6'>
-                      <div className='flex items-center justify-start gap-1 flex-col'>
+                      <div className='flex flex-col items-center justify-start gap-1'>
                         <span className='w-[70px]'>Opacity</span>
                         {/* <input
                           onChange={(e) =>
@@ -511,12 +511,12 @@ export default function EditDesignPage() {
                           type='range'
                           onChange={(e) => {
                             console.log(e.target.value);
-                            setOpacity(parseFloat(e.target.value) / 100);
+                            setOpacity(parseFloat(e.target.value));
                           }}
                           min={0}
-                          max={100}
-                          value={opacity * 100}
-                          step={1}
+                          max={1}
+                          value={opacity}
+                          step={0.05}
                           className='range range-xs'
                         />
                         <h6 className='text-white'>{opacity}</h6>
