@@ -117,6 +117,7 @@ export default function EditDesignPage() {
   const [fontSize, setFontSize] = useState<number>(16);
   const [weight, setWeight] = useState(400);
   const [text, setText] = useState<string>('');
+  const [opacity, setOpacity] = useState<number>(100);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -245,6 +246,8 @@ export default function EditDesignPage() {
     setComponents([...temp, component]);
   }
 
+  function opacityHandle(): void {}
+
   function createShape(name: string, type: Shape): void {
     const style: InfoComponent = {
       id: Date.now(),
@@ -314,6 +317,7 @@ export default function EditDesignPage() {
       if (currentComponent.name === 'main_frame') {
         components[index].left = left || currentComponent.left;
         components[index].top = top || currentComponent.top;
+        components[index].opacity = opacity || currentComponent.opacity;
 
         if (image) {
           components[index].image = image || currentComponent.image;
@@ -327,8 +331,9 @@ export default function EditDesignPage() {
       setLeft(0);
       setTop(0);
       setRotate(0);
+      setOpacity(100);
     }
-  }, [color, image, left, top, width, height, rotate]);
+  }, [color, image, left, top, width, height, rotate, opacity]);
 
   return (
     <div className='h-screen w-screen bg-black'>
@@ -486,6 +491,24 @@ export default function EditDesignPage() {
                         Remove background
                       </button>
                     )}
+                  {currentComponent?.name !== 'main_frame' && (
+                    <div className='flex gap-6'>
+                      <div className='flex items-start justify-start gap-1'>
+                        <span className='w-[70px]'>Opacity</span>
+                        <input
+                          onChange={(e) =>
+                            setOpacity(parseFloat(e.target.value))
+                          }
+                          className='w-[70px] rounded-md border border-gray-700 bg-transparent px-2 outline-none'
+                          type='number'
+                          step={0.1}
+                          min={0.1}
+                          max={1}
+                          value={currentComponent?.opacity}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
