@@ -26,6 +26,8 @@ export const metadata: Metadata = {
 // TODO: Add consts with default values for components
 // TODO: Add more interfaces InfoComponent depending of the element to add
 // FIXME: Fix opacity with slider
+// TODO: Replace input text for a textarea
+// TODO: Save text when lose focus
 export default function RootLayout({
   children,
 }: Readonly<{

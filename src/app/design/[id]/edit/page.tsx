@@ -317,6 +317,7 @@ export default function EditDesignPage() {
         components[index].fontSize = fontSize || currentComponent.fontSize;
         components[index].padding = padding || currentComponent.padding;
         components[index].weight = weight || currentComponent.weight;
+        components[index].text = text || currentComponent.text;
       }
 
       if (currentComponent.name === 'main_frame' && image) {
@@ -340,6 +341,7 @@ export default function EditDesignPage() {
       // TODO: Check setOpacity(1)
       setOpacity(1);
       setZIndex(0);
+      setText('');
     }
   }, [
     color,
@@ -354,6 +356,7 @@ export default function EditDesignPage() {
     padding,
     fontSize,
     weight,
+    text,
   ]);
 
   return (
@@ -582,6 +585,31 @@ export default function EditDesignPage() {
                               }
                               className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                             />
+                          </div>
+                          <div className='flex flex-col items-start justify-start gap-2'>
+                            {/* TODO: Replace for an textarea */}
+                            <input
+                              onChange={(e) =>
+                                setCurrentComponent(
+                                  (prev: InfoComponent | undefined) =>
+                                    !!prev
+                                      ? ({
+                                          ...prev,
+                                          text: e.target.value,
+                                        } as InfoComponent)
+                                      : undefined,
+                                )
+                              }
+                              value={currentComponent.text}
+                              className='rounded-md border border-gray-700 bg-transparent p-2 outline-none'
+                              type='text'
+                            />
+                            <button
+                              onClick={() => setText(currentComponent.text)}
+                              className='w-full rounded-md bg-purple-500 px-4 py-2 text-xs text-white'
+                            >
+                              Add text
+                            </button>
                           </div>
                         </>
                       )}
