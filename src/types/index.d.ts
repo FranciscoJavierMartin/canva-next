@@ -15,6 +15,7 @@ type InfoComponent = {
   z_index: number;
   color: string;
   image: string;
+  radius: number;
   padding: number;
   fontSize: number;
   text: string;

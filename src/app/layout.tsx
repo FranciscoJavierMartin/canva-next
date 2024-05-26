@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 // FIXME: Fix opacity with slider
 // TODO: Replace input text for a textarea
 // TODO: Save text when lose focus
+// TODO: Split CreateComponent with switch and functions for returned JSX
 export default function RootLayout({
   children,
 }: Readonly<{

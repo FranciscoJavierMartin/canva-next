@@ -103,6 +103,43 @@ export default function CreateComponent({
     );
   }
 
+  if (info.name === 'shape' && info.type === 'triangle') {
+    html = (
+      <div
+        id={randValue}
+        onClick={() => info.setCurrentComponent(info)}
+        style={{
+          left: info.left + 'px',
+          top: info.top + 'px',
+          zIndex: info.z_index,
+          transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
+        }}
+        className='group absolute hover:border-2 hover:border-indigo-500'
+      >
+        <div
+          id={`${randValue}t`}
+          style={{
+            width: info.width + 'px',
+            height: info.width + 'px',
+            background: info.color,
+            opacity: info.opacity,
+            clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
+          }}
+        ></div>
+        <Element id={randValue} info={info} exId={`${randValue}t`} />
+        {/* TODO: Move to component */}
+        {currentComponent?.id === info.id && (
+          <div
+            onClick={() => removeComponent(info.id)}
+            className='absolute top-0 hidden cursor-pointer rounded-md bg-white px-3 py-2 group-hover:block'
+          >
+            <FaTrashAlt />
+          </div>
+        )}
+      </div>
+    );
+  }
+
   if (info.name === 'text') {
     html = (
       <div
@@ -138,36 +175,34 @@ export default function CreateComponent({
     );
   }
 
-  if (info.name === 'shape' && info.type === 'triangle') {
+  if (info.name === 'image') {
     html = (
       <div
         id={randValue}
         onClick={() => info.setCurrentComponent(info)}
         style={{
-          left: info.left + 'px',
-          top: info.top + 'px',
+          left: `${info.left}px`,
+          top: `${info.top}px`,
           zIndex: info.z_index,
+          opacity: info.opacity,
           transform: info.rotate ? `rotate(${info.rotate}deg)` : 'rotate(0deg)',
         }}
         className='group absolute hover:border-2 hover:border-indigo-500'
       >
+        <Element id={randValue} info={info} exId={`${randValue}img`} />
         <div
-          id={`${randValue}t`}
+          id={`${randValue}img`}
+          className='overflow-hidden'
           style={{
-            width: info.width + 'px',
-            height: info.width + 'px',
-            background: info.color,
-            opacity: info.opacity,
-            clipPath: 'polygon(50% 0, 100% 100%, 0 100%)',
+            width: `${info.width}px`,
+            height: `${info.height}px`,
+            borderRadius: `${info.radius}%`,
           }}
-        ></div>
-        <Element id={randValue} info={info} exId={`${randValue}t`} />
-        {/* TODO: Move to component */}
+        >
+          <img src={info.image} alt='image' className='size-full' />
+        </div>
         {currentComponent?.id === info.id && (
-          <div
-            onClick={() => removeComponent(info.id)}
-            className='absolute top-0 hidden cursor-pointer rounded-md bg-white px-3 py-2 group-hover:block'
-          >
+          <div onClick={() => removeComponent(info.id)} className='px-3 py-2 bg-white absolute top-0 hidden'>
             <FaTrashAlt />
           </div>
         )}

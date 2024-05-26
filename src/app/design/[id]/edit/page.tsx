@@ -119,6 +119,7 @@ export default function EditDesignPage() {
   const [text, setText] = useState<string>('');
   const [opacity, setOpacity] = useState<number>(1);
   const [zIndex, setZIndex] = useState<number>(1);
+  const [radius, setRadius] = useState<number>(0);
 
   function setElements(type: ElementType, name: string): void {
     setState(type);
@@ -302,6 +303,32 @@ export default function EditDesignPage() {
     setComponents([...components, style]);
   }
 
+  function addImage(img: string): void {
+    setCurrentComponent(undefined);
+
+    const style: InfoComponent = {
+      id: Date.now(),
+      name: 'image',
+      type: 'image',
+      left: 10,
+      top: 10,
+      opacity: 1,
+      width: 200,
+      height: 150,
+      rotate,
+      z_index: 2,
+      radius: 0,
+      image: img,
+      setCurrentComponent,
+      moveElement,
+      resizeElement,
+      rotateElement,
+    };
+
+    setCurrentComponent(style);
+    setComponents([...components, style]);
+  }
+
   useEffect(() => {
     if (currentComponent) {
       const index = components.findIndex((c) => c.id === currentComponent.id);
@@ -432,7 +459,7 @@ export default function EditDesignPage() {
             )}
             {state === 'initImage' && (
               <div className='no-scrollbar flex h-[88vh] items-start justify-start overflow-x-auto'>
-                <ImageGallery />
+                <ImageGallery addImage={addImage} />
               </div>
             )}
             {state === 'background' && (
