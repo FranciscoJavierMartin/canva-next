@@ -555,6 +555,34 @@ export default function EditDesignPage() {
                               className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                             />
                           </div>
+                          <div className='flex items-start justify-start gap-1'>
+                            <span className='w-[70px]'>Font size</span>
+                            <input
+                              type='number'
+                              min={0}
+                              max={100}
+                              step={1}
+                              value={currentComponent.fontSize}
+                              onChange={(e) =>
+                                setFontSize(parseInt(e.target.value))
+                              }
+                              className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                            />
+                          </div>
+                          <div className='flex items-start justify-start gap-1'>
+                            <span className='w-[70px]'>Weight</span>
+                            <input
+                              type='number'
+                              min={0}
+                              max={1000}
+                              step={100}
+                              value={currentComponent.weight}
+                              onChange={(e) =>
+                                setWeight(parseInt(e.target.value))
+                              }
+                              className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                            />
+                          </div>
                         </>
                       )}
                     </div>
