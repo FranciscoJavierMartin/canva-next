@@ -313,6 +313,12 @@ export default function EditDesignPage() {
         components[index].rotate = rotate || currentComponent.rotate;
       }
 
+      if (currentComponent.name === 'text') {
+        components[index].fontSize = fontSize || currentComponent.fontSize;
+        components[index].padding = padding || currentComponent.padding;
+        components[index].weight = weight || currentComponent.weight;
+      }
+
       if (currentComponent.name === 'main_frame' && image) {
         components[index].image = image || currentComponent.image;
       }
@@ -335,7 +341,20 @@ export default function EditDesignPage() {
       setOpacity(1);
       setZIndex(0);
     }
-  }, [color, image, left, top, width, height, rotate, opacity, zIndex]);
+  }, [
+    color,
+    image,
+    left,
+    top,
+    width,
+    height,
+    rotate,
+    opacity,
+    zIndex,
+    padding,
+    fontSize,
+    weight,
+  ]);
 
   return (
     <div className='h-screen w-screen bg-black'>
@@ -520,6 +539,24 @@ export default function EditDesignPage() {
                           className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                         />
                       </div>
+                      {currentComponent.name === 'text' && (
+                        <>
+                          <div className='flex items-start justify-start gap-1'>
+                            <span className='w-[70px]'>Padding</span>
+                            <input
+                              type='number'
+                              min={0}
+                              max={100}
+                              step={1}
+                              value={currentComponent.padding}
+                              onChange={(e) =>
+                                setPadding(parseInt(e.target.value))
+                              }
+                              className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                            />
+                          </div>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>

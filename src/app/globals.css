@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+// TODO: Add to utilities
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
   scrollbar-width: none;
