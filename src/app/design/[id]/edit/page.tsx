@@ -571,7 +571,7 @@ export default function EditDesignPage() {
                           max={9999}
                           step={1}
                           value={currentComponent.z_index}
-                          className='rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                          className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                         />
                       </div>
                       {currentComponent.name === 'image' && (
@@ -584,9 +584,9 @@ export default function EditDesignPage() {
                             type='number'
                             step={1}
                             min={0}
-                            max={9999}
+                            max={90}
                             value={currentComponent.radius}
-                            className='rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                            className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                           />
                         </div>
                       )}
