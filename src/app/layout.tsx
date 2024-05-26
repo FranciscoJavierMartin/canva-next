@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 // TODO: Save text when lose focus
 // TODO: Split CreateComponent with switch and functions for returned JSX
 // TODO: Close sidebar when add shape or image
+// TODO: Add validation for form
 export default function RootLayout({
   children,
 }: Readonly<{

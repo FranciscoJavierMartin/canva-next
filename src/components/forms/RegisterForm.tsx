@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { BiLogoGmail } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import InputForm from '@/components/InputForm';
@@ -8,11 +9,26 @@ export default function RegisterForm() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
+    e.preventDefault();
+
+    try {
+      setIsLoading(true);
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <>
       <h2 className='text-center text-xl text-white'>Sign Up in seconds</h2>
-      <form className='flex flex-col gap-2'>
+      <form onSubmit={onSubmit} className='flex flex-col gap-2'>
         <InputForm
           inputProps={{
             id: 'name',
@@ -44,7 +60,11 @@ export default function RegisterForm() {
           value={password}
         />
 
-        <button className='mt-6 w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600'>
+        <button
+          type='submit'
+          className='mt-6 w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600 disabled:bg-purple-300'
+          disabled={isLoading}
+        >
           Sign Up
         </button>
 
