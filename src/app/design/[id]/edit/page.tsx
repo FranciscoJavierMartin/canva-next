@@ -347,6 +347,10 @@ export default function EditDesignPage() {
         components[index].text = text || currentComponent.text;
       }
 
+      if (currentComponent.name === 'image') {
+        components[index].radius = radius || currentComponent.radius;
+      }
+
       if (currentComponent.name === 'main_frame' && image) {
         components[index].image = image || currentComponent.image;
       }
@@ -384,6 +388,7 @@ export default function EditDesignPage() {
     fontSize,
     weight,
     text,
+    radius,
   ]);
 
   return (
@@ -443,7 +448,7 @@ export default function EditDesignPage() {
                 ></button>
               </div>
             )}
-            {state === 'image' && <MyImages />}
+            {state === 'image' && <MyImages addImage={addImage} />}
             {state === 'text' && (
               <div className='grid grid-cols-1 gap-2'>
                 <div
@@ -566,9 +571,25 @@ export default function EditDesignPage() {
                           max={9999}
                           step={1}
                           value={currentComponent.z_index}
-                          className='flex-grow rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                          className='rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
                         />
                       </div>
+                      {currentComponent.name === 'image' && (
+                        <div className='flex items-start justify-start gap-1'>
+                          <span className='w-[70px]'>Radius</span>
+                          <input
+                            onChange={(e) =>
+                              setRadius(parseInt(e.target.value))
+                            }
+                            type='number'
+                            step={1}
+                            min={0}
+                            max={9999}
+                            value={currentComponent.radius}
+                            className='rounded-md border border-gray-700 bg-transparent px-2 text-right outline-none'
+                          />
+                        </div>
+                      )}
                       {currentComponent.name === 'text' && (
                         <>
                           <div className='flex items-start justify-start gap-1'>

@@ -1,6 +1,10 @@
 import ImageGallery from '@/components/sidebar/ImageGallery';
 
-export default function MyImages() {
+type MyImagesProps = {
+  addImage: (img: string) => void;
+};
+
+export default function MyImages({ addImage }: MyImagesProps) {
   return (
     <div>
       <div className='mb-3 flex h-[40px] w-full items-center justify-center rounded-md bg-purple-500 text-white'>
@@ -10,7 +14,7 @@ export default function MyImages() {
         <input type='file' id='image' className='hidden' />
       </div>
       <div className='no-scrollbar flex h-[80vh] items-start justify-start overflow-x-auto'>
-        <ImageGallery />
+        <ImageGallery addImage={addImage} />
       </div>
     </div>
   );
