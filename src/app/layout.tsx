@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 // TODO: Replace input text for a textarea
 // TODO: Save text when lose focus
 // TODO: Split CreateComponent with switch and functions for returned JSX
+// TODO: Close sidebar when add shape or image
 export default function RootLayout({
   children,
 }: Readonly<{
