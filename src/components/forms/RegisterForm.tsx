@@ -1,21 +1,27 @@
 'use client';
 import { useState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { BiLogoGmail } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import InputForm from '@/components/InputForm';
 import { registerUser } from '@/actions/register-user';
-import { useFormStatus } from 'react-dom';
+
+const initialState = {
+  message: '',
+  error: {},
+};
 
 export default function RegisterForm() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { pending } = useFormStatus();
+  const [state, formAction] = useFormState(registerUser, initialState);
 
   return (
     <>
       <h2 className='text-center text-xl text-white'>Sign Up in seconds</h2>
-      <form action={registerUser} className='flex flex-col gap-2'>
+      <form action={formAction} className='flex flex-col gap-2'>
         <InputForm
           inputProps={{
             id: 'name',

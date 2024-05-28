@@ -1,11 +1,25 @@
 'use server';
 
-export async function registerUser(formData: FormData) {
+import { registerUserSchema } from '@/lib/validations/registerUserSchema';
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+
+export async function registerUser(prev: any, formData: FormData) {
   const data = {
     email: formData.get('email'),
     name: formData.get('name'),
     password: formData.get('password'),
   };
 
-  console.log(data);
+  const validatedFields = registerUserSchema.safeParse(data);
+
+  if (validatedFields.success) {
+    redirect('/home');
+  } else {
+  }
+
+  return {
+    message: '',
+    error: validatedFields.error?.flatten().fieldErrors,
+  };
 }

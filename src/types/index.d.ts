@@ -27,3 +27,4 @@ type InfoComponent = {
 };
 
 type Shape = 'rect' | 'circle' | 'triangle';
+
