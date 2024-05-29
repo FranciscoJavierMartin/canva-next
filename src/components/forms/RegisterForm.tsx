@@ -6,7 +6,7 @@ import { FaFacebook } from 'react-icons/fa';
 import InputForm from '@/components/InputForm';
 import { registerUser } from '@/actions/register-user';
 
-const initialState = {
+const initialState: RegisterFormState<RegisterFormFields> = {
   message: '',
   error: {},
 };
@@ -32,6 +32,12 @@ export default function RegisterForm() {
           setValue={setName}
           value={name}
         />
+        {state.error.name &&
+          state.error.name.map((error) => (
+            <p key={error} className='ml-2 mt-2 text-sm text-red-400'>
+              {error}
+            </p>
+          ))}
         <InputForm
           inputProps={{
             id: 'email',
@@ -42,6 +48,12 @@ export default function RegisterForm() {
           setValue={setEmail}
           value={email}
         />
+        {state.error.email &&
+          state.error.email.map((error) => (
+            <p key={error} className='ml-2 mt-2 text-sm text-red-400'>
+              {error}
+            </p>
+          ))}
         <InputForm
           inputProps={{
             id: 'password',
@@ -52,7 +64,12 @@ export default function RegisterForm() {
           setValue={setPassword}
           value={password}
         />
-
+        {state.error.password &&
+          state.error.password.map((error) => (
+            <p key={error} className='ml-2 mt-2 text-sm text-red-400'>
+              {error}
+            </p>
+          ))}
         <button
           type='submit'
           className='mt-6 w-full rounded-md bg-purple-500 px-3 py-2 text-white outline-none hover:bg-purple-600 disabled:bg-purple-300'

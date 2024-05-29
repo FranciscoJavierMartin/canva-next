@@ -4,7 +4,10 @@ import { registerUserSchema } from '@/lib/validations/registerUserSchema';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 
-export async function registerUser(prev: any, formData: FormData) {
+export async function registerUser(
+  prev: RegisterFormState<RegisterFormFields>,
+  formData: FormData,
+) {
   const data = {
     email: formData.get('email'),
     name: formData.get('name'),
