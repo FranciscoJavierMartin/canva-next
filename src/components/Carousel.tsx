@@ -13,7 +13,7 @@ export default function Carousel() {
             >
               <img
                 className='h-full w-full overflow-hidden rounded-md'
-                src='http://localhost:4200/proxy-image.jpg'
+                src='http://localhost:4200/images/proxy-image.jpg'
                 alt=''
               />
             </Link>

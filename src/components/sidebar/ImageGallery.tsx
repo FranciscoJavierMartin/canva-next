@@ -10,11 +10,11 @@ export default function ImageGallery({ addImage }: ImageGalleryProps) {
           <div
             key={i}
             className='h-[90px] w-full cursor-pointer overflow-hidden rounded-md'
-            onClick={() => addImage('http://localhost:4200/proxy-image.jpg')}
+            onClick={() => addImage('http://localhost:4200/images/proxy-image.jpg')}
           >
             <img
               className='size-full'
-              src='http://localhost:4200/proxy-image.jpg'
+              src='http://localhost:4200/images/proxy-image.jpg'
               alt=''
             />
           </div>

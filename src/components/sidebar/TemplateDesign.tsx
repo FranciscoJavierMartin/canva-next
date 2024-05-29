@@ -8,7 +8,7 @@ export default function TemplateDesign() {
         >
           <img
             className='size-full'
-            src='http://localhost:4200/proxy-image.jpg'
+            src='http://localhost:4200/images/proxy-image.jpg'
             alt=''
           />
         </div>
