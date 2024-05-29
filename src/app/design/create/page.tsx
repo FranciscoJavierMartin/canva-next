@@ -45,7 +45,7 @@ export default function CreateDesignPage({ searchParams }: SearchParamsProps) {
     } else {
       router.push('/');
     }
-  }, [ref]);
+  }, []);
 
   return (
     <div className='relative flex h-screen w-screen items-center justify-center'>
