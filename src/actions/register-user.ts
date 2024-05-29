@@ -53,6 +53,7 @@ export async function registerUser(
   } catch (error) {
     console.log(error);
     message = 'Ups, something went wrong. Please try again.';
+    throw error;
   }
 
   return {
