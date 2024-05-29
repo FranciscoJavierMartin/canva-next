@@ -14,16 +14,17 @@ export function middleware(request: NextRequest) {
   );
   const isLoggedIn: boolean = !!request.cookies.get(JWT)?.value;
 
-  console.log({ cookie: request.cookies.get(JWT), isPublic, isAuthRoute });
-
   if (isPublic) {
-    response = NextResponse.next();
+    if (isLoggedIn) {
+      response = NextResponse.redirect(new URL('/home', request.url));
+    } else {
+      response = NextResponse.next();
+    }
   } else if (isAuthRoute) {
     if (isLoggedIn) {
       response = NextResponse.next();
     } else {
       response = NextResponse.redirect(new URL('/home', request.url));
-      // response = NextResponse.next();
     }
   } else if (!isPublic && isLoggedIn) {
     response = NextResponse.redirect(new URL('/?show=true&form=login'));
