@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { registerUserSchema } from '@/lib/validations/registerUserSchema';
 import userModel from '@/lib/db/models/userModel';
+import connectMongo from '@/lib/db/connect-mongo';
 
 export async function registerUser(
   prev: RegisterFormState<RegisterFormFields>,
@@ -28,6 +29,7 @@ export async function registerUser(
 
   try {
     if (validatedFields.success) {
+      await connectMongo();
       const { email, name, password } = data;
       const userExists = await userModel.findOne({ email }).select('+password');
 
@@ -39,7 +41,7 @@ export async function registerUser(
           email,
           password: await bcrypt.hash(
             password!.toString(),
-            process.env.SALT_PASSWORD!,
+            +process.env.SALT_PASSWORD!,
           ),
         });
 
@@ -63,6 +65,6 @@ export async function registerUser(
 
   return {
     message,
-    error: validatedFields.error?.flatten().fieldErrors,
+    error: validatedFields.error?.flatten().fieldErrors || {},
   };
 }
