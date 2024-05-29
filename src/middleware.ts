@@ -24,7 +24,9 @@ export function middleware(request: NextRequest) {
     if (isLoggedIn) {
       response = NextResponse.next();
     } else {
-      response = NextResponse.redirect(new URL('/home', request.url));
+      response = NextResponse.redirect(
+        `${request.nextUrl.origin}/?show=true&form=login`,
+      );
     }
   } else if (!isPublic && isLoggedIn) {
     response = NextResponse.redirect(new URL('/?show=true&form=login'));
