@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { registerUserSchema } from '@/lib/validations/registerUserSchema';
 import userModel from '@/lib/db/models/userModel';
 
@@ -41,10 +42,18 @@ export async function registerUser(
         ),
       });
 
-
+      const token = jwt.sign(
+        {
+          name: user.name,
+          email: user.email,
+          id: user.id,
+        },
+        process.env.JWT_SECRET!,
+        { expiresIn: '2d' },
+      );
+      cookies().set('jwt', token);
+      redirect('/home');
     }
-    redirect('/home');
-  } else {
   }
 
   return {
