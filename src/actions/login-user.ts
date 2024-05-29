@@ -7,6 +7,7 @@ import connectMongo from '@/lib/db/connect-mongo';
 import userModel from '@/lib/db/models/userModel';
 import { loginUserSchema } from '@/lib/validations/loginUserSchema';
 import { signJwt } from '@/lib/db/jwt';
+import { JWT } from '@/lib/constants';
 
 export async function loginUser(
   prev: LoginFormState<LoginFormFields>,
@@ -40,7 +41,7 @@ export async function loginUser(
 
         if (matchPassword) {
           const token = signJwt(user.id, user.name, user.email);
-          cookies().set('jwt', token);
+          cookies().set(JWT, token);
           return redirect('/home');
         }
       } else {

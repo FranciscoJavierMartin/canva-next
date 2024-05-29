@@ -7,6 +7,7 @@ import { registerUserSchema } from '@/lib/validations/registerUserSchema';
 import userModel from '@/lib/db/models/userModel';
 import connectMongo from '@/lib/db/connect-mongo';
 import { signJwt } from '@/lib/db/jwt';
+import { JWT } from '@/lib/constants';
 
 export async function registerUser(
   prev: RegisterFormState<RegisterFormFields>,
@@ -46,7 +47,7 @@ export async function registerUser(
         });
 
         const token = signJwt(user.id, user.name, user.email);
-        cookies().set('jwt', token);
+        cookies().set(JWT, token);
         redirect('/home');
       }
     }
