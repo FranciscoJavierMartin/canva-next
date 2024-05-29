@@ -26,34 +26,39 @@ export async function registerUser(
     }))
     .safeParse(data);
 
-  if (validatedFields.success) {
-    const { email, name, password } = data;
-    const userExists = await userModel.findOne({ email }).select('+password');
+  try {
+    if (validatedFields.success) {
+      const { email, name, password } = data;
+      const userExists = await userModel.findOne({ email }).select('+password');
 
-    if (userExists) {
-      message = 'User already exists';
-    } else {
-      const user = await userModel.create({
-        name,
-        email,
-        password: await bcrypt.hash(
-          password!.toString(),
-          process.env.SALT_PASSWORD!,
-        ),
-      });
+      if (userExists) {
+        message = 'User already exists';
+      } else {
+        const user = await userModel.create({
+          name,
+          email,
+          password: await bcrypt.hash(
+            password!.toString(),
+            process.env.SALT_PASSWORD!,
+          ),
+        });
 
-      const token = jwt.sign(
-        {
-          name: user.name,
-          email: user.email,
-          id: user.id,
-        },
-        process.env.JWT_SECRET!,
-        { expiresIn: '2d' },
-      );
-      cookies().set('jwt', token);
-      redirect('/home');
+        const token = jwt.sign(
+          {
+            name: user.name,
+            email: user.email,
+            id: user.id,
+          },
+          process.env.JWT_SECRET!,
+          { expiresIn: '2d' },
+        );
+        cookies().set('jwt', token);
+        redirect('/home');
+      }
     }
+  } catch (error) {
+    console.log(error);
+    message = 'Ups, something went wrong. Please try again.';
   }
 
   return {
