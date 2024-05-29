@@ -475,12 +475,12 @@ export default function EditDesignPage() {
                       key={i}
                       className='h-[90px] w-full cursor-pointer overflow-hidden rounded-sm'
                       onClick={() =>
-                        setImage('http://localhost:4200/proxy-image.jpg')
+                        setImage('http://localhost:4200/images/proxy-image.jpg')
                       }
                     >
                       <img
                         className='size-full object-fill'
-                        src='http://localhost:4200/proxy-image.jpg'
+                        src='http://localhost:4200/images/proxy-image.jpg'
                         alt=''
                       />
                     </div>
