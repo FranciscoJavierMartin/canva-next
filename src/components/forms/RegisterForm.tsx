@@ -78,6 +78,10 @@ export default function RegisterForm() {
           Sign Up
         </button>
 
+        {state.message && (
+          <p className='text-sm text-red-400'>{state.message}</p>
+        )}
+
         <div className='flex items-center justify-between px-1 py-2'>
           <div className='h-[1px] flex-grow bg-slate-500'></div>
           <div className='px-3 text-center text-white'>Or</div>
