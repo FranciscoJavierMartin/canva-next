@@ -3,10 +3,10 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { registerUserSchema } from '@/lib/validations/registerUserSchema';
 import userModel from '@/lib/db/models/userModel';
 import connectMongo from '@/lib/db/connect-mongo';
+import { signJwt } from '@/lib/db/jwt';
 
 export async function registerUser(
   prev: RegisterFormState<RegisterFormFields>,
@@ -31,7 +31,7 @@ export async function registerUser(
     if (validatedFields.success) {
       await connectMongo();
       const { email, name, password } = data;
-      const userExists = await userModel.findOne({ email }).select('+password');
+      const userExists = await userModel.findOne({ email });
 
       if (userExists) {
         message = 'User already exists';
@@ -45,15 +45,7 @@ export async function registerUser(
           ),
         });
 
-        const token = jwt.sign(
-          {
-            name: user.name,
-            email: user.email,
-            id: user.id,
-          },
-          process.env.JWT_SECRET!,
-          { expiresIn: '2d' },
-        );
+        const token = signJwt(user.id, user.name, user.email);
         cookies().set('jwt', token);
         redirect('/home');
       }
