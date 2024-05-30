@@ -16,6 +16,7 @@ import TemplateDesign from '@/components/sidebar/TemplateDesign';
 import MyImages from '@/components/sidebar/MyImages';
 import ImageGallery from '@/components/sidebar/ImageGallery';
 import CreateComponent from '@/components/CreateComponent';
+import { getDesign } from '@/actions/get-design';
 
 type ElementType =
   | 'design'
@@ -76,7 +77,8 @@ const items: {
   },
 ];
 
-export default function EditDesignPage() {
+export default function EditDesignPage({ params }: { params: { id: string } }) {
+  const { id: designId } = params;
   const [state, setState] = useState<ElementType | undefined>(undefined);
   const [show, setShow] = useState({
     status: true,
@@ -390,6 +392,10 @@ export default function EditDesignPage() {
     text,
     radius,
   ]);
+
+  useEffect(() => {
+    getDesign(designId);
+  }, [designId]);
 
   return (
     <div className='h-screen w-screen bg-black'>

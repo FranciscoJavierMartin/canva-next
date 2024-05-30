@@ -25,6 +25,8 @@ export async function createDesign(formData: FormData) {
           // TODO: Add url from cloudinary
           imageUrl: '',
         });
+
+        return design;
       } catch (error) {
         console.log(error);
       }
