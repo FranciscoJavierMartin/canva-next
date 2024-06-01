@@ -17,6 +17,7 @@ import MyImages from '@/components/sidebar/MyImages';
 import ImageGallery from '@/components/sidebar/ImageGallery';
 import CreateComponent from '@/components/CreateComponent';
 import { getDesign } from '@/actions/get-design';
+import BackgroundImages from '@/components/BackgroundImages';
 
 type ElementType =
   | 'design'
@@ -487,28 +488,12 @@ export default function EditDesignPage({ params }: { params: { id: string } }) {
             )}
             {state === 'initImage' && (
               <div className='no-scrollbar flex h-[88vh] items-start justify-start overflow-x-auto'>
-                <ImageGallery addImage={addImage} images={[]}/>
+                <ImageGallery addImage={addImage} images={[]} />
               </div>
             )}
             {state === 'background' && (
               <div className='no-scrollbar flex h-[88vh] items-start justify-start overflow-x-auto'>
-                <div className='grid grid-cols-2 gap-2'>
-                  {[1, 2, 3, 4, 5, 6].map((img, i) => (
-                    <div
-                      key={i}
-                      className='h-[90px] w-full cursor-pointer overflow-hidden rounded-sm'
-                      onClick={() =>
-                        setImage('http://localhost:4200/images/proxy-image.jpg')
-                      }
-                    >
-                      <img
-                        className='size-full object-fill'
-                        src='http://localhost:4200/images/proxy-image.jpg'
-                        alt=''
-                      />
-                    </div>
-                  ))}
-                </div>
+                <BackgroundImages />
               </div>
             )}
           </div>
