@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import ImageGallery from '@/components/sidebar/ImageGallery';
 import { uploadImage as uploadImageServer } from '@/actions/upload-image';
 import { getUserImages } from '@/actions/get-user-images';
@@ -8,6 +8,8 @@ type MyImagesProps = {
 };
 
 export default function MyImages({ addImage }: MyImagesProps) {
+  const [images, setImages] = useState<string[]>([]);
+
   async function uploadImage(event: ChangeEvent<HTMLInputElement>) {
     if (event.target.files?.length) {
       const formData = new FormData();
@@ -23,7 +25,8 @@ export default function MyImages({ addImage }: MyImagesProps) {
 
   useEffect(() => {
     (async () => {
-      await getUserImages();
+      const imagesUrl: string[] = await getUserImages();
+      setImages(imagesUrl);
     })();
   }, []);
 
@@ -41,7 +44,7 @@ export default function MyImages({ addImage }: MyImagesProps) {
         />
       </div>
       <div className='no-scrollbar flex h-[80vh] items-start justify-start overflow-x-auto'>
-        <ImageGallery addImage={addImage} />
+        <ImageGallery addImage={addImage} images={images} />
       </div>
     </div>
   );

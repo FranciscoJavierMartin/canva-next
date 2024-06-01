@@ -7,7 +7,7 @@ import { JWT } from '@/lib/constants';
 import userImageModel from '@/lib/db/models/userImageModel';
 import connectMongo from '@/lib/db/connect-mongo';
 
-export async function getUserImages() {
+export async function getUserImages(): Promise<string[]> {
   const token = cookies().get(JWT)?.value;
 
   if (token) {
