@@ -1,6 +1,7 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import ImageGallery from '@/components/sidebar/ImageGallery';
 import { uploadImage as uploadImageServer } from '@/actions/upload-image';
+import { getUserImages } from '@/actions/get-user-images';
 
 type MyImagesProps = {
   addImage: (img: string) => void;
@@ -19,6 +20,12 @@ export default function MyImages({ addImage }: MyImagesProps) {
       }
     }
   }
+
+  useEffect(() => {
+    (async () => {
+      await getUserImages();
+    })();
+  }, []);
 
   return (
     <div>

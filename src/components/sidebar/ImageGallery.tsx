@@ -1,8 +1,9 @@
 type ImageGalleryProps = {
   addImage: (image: string) => void;
+  images: string[];
 };
 
-export default function ImageGallery({ addImage }: ImageGalleryProps) {
+export default function ImageGallery({ addImage, images }: ImageGalleryProps) {
   return (
     <div className='grid grid-cols-2 gap-2'>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(
@@ -10,7 +11,9 @@ export default function ImageGallery({ addImage }: ImageGalleryProps) {
           <div
             key={i}
             className='h-[90px] w-full cursor-pointer overflow-hidden rounded-md'
-            onClick={() => addImage('http://localhost:4200/images/proxy-image.jpg')}
+            onClick={() =>
+              addImage('http://localhost:4200/images/proxy-image.jpg')
+            }
           >
             <img
               className='size-full'

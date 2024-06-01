@@ -487,7 +487,7 @@ export default function EditDesignPage({ params }: { params: { id: string } }) {
             )}
             {state === 'initImage' && (
               <div className='no-scrollbar flex h-[88vh] items-start justify-start overflow-x-auto'>
-                <ImageGallery addImage={addImage} />
+                <ImageGallery addImage={addImage} images={[]}/>
               </div>
             )}
             {state === 'background' && (

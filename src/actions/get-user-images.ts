@@ -1,4 +1,5 @@
 'use server';
+
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import { redirect } from 'next/navigation';
@@ -6,7 +7,7 @@ import { JWT } from '@/lib/constants';
 import userImageModel from '@/lib/db/models/userImageModel';
 import connectMongo from '@/lib/db/connect-mongo';
 
-export async function uploadImage(formData: FormData) {
+export async function getUserImages() {
   const token = cookies().get(JWT)?.value;
 
   if (token) {
@@ -15,14 +16,15 @@ export async function uploadImage(formData: FormData) {
     if (userInfo) {
       // TODO: Upload to cloudinary
       await connectMongo();
+      const userImages = (
+        await userImageModel
+          .find({
+            user_id: userInfo.id,
+          })
+          .select('imageUrl')
+      ).map((doc) => doc.imageUrl);
 
-      const userImage = await userImageModel.create({
-        user_id: userInfo.id,
-        // TODO: Provisional
-        imageUrl: 'https://testrigor.com/wp-content/uploads/2023/04/nextjs-logo-square.png',
-      });
-
-      return JSON.stringify(userImage);
+      return userImages;
     } else {
       redirect(`/?show=true&form=login`);
     }
