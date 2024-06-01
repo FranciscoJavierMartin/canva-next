@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 // TODO: Split CreateComponent with switch and functions for returned JSX
 // TODO: Close sidebar when add shape or image
 // TODO: Add validation for form
+// TODO: Better error handling. No console.log
 export default function RootLayout({
   children,
 }: Readonly<{
