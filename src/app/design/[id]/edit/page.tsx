@@ -416,7 +416,7 @@ export default function EditDesignPage({ params }: { params: { id: string } }) {
 
   return (
     <div className='h-screen w-screen bg-black'>
-      <Header />
+      <Header components={components} designId={designId} />
       <div className='flex h-[calc(100%-60px)] w-screen'>
         <div className='z-50 h-full w-[80px] overflow-y-auto bg-[#18191B] text-gray-400'>
           {items.map((item) => (

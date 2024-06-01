@@ -28,12 +28,12 @@ export default function CreateDesignPage({ searchParams }: SearchParamsProps) {
 
     if (image) {
       const formData = new FormData();
-      formData.append('design', design);
+      formData.append('design', JSON.stringify(design));
       formData.append('image', image);
 
       try {
-        const data = await saveDesign(formData);
-        router.replace(`/design/${data._id}/edit`);
+        const designId = await saveDesign(formData);
+        // router.replace(`/design/${designId}/edit`);
       } catch (error) {
         console.log(error);
       }

@@ -32,6 +32,7 @@ export const metadata: Metadata = {
 // TODO: Close sidebar when add shape or image
 // TODO: Add validation for form
 // TODO: Better error handling. No console.log
+// TODO: Check if token has expired
 export default function RootLayout({
   children,
 }: Readonly<{

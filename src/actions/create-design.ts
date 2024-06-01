@@ -15,19 +15,19 @@ export async function createDesign(formData: FormData) {
 
     if (userInfo) {
       const designField = formData.get('design')!;
+      console.log(designField);
       const image = formData.get('image');
 
       try {
         // TODO: Upload to cloudinary
-        await connectMongo();
-        const design = await designModel.create({
-          user_id: userInfo.id,
-          components: [JSON.parse(designField.toString())],
-          // TODO: Add url from cloudinary
-          imageUrl: '',
-        });
-
-        return design;
+        // await connectMongo();
+        // const design = await designModel.create({
+        //   user_id: userInfo.id,
+        //   components: [JSON.parse(designField.toString())],
+        //   // TODO: Add url from cloudinary
+        //   imageUrl: '',
+        // });
+        // return design._id;
       } catch (error) {
         console.log(error);
       }

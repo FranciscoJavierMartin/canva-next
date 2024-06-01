@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import * as htmlToImage from 'html-to-image';
 
-export default function Header() {
-  async function downloadImage() {
+type HeaderProps = {
+  components: any[];
+  designId: string;
+};
+
+export default function Header({ components, designId }: HeaderProps) {
+  async function downloadImage(): Promise<void> {
     const mainDesign = document.getElementById('main_design');
 
     const dataUrl = await htmlToImage.toPng(mainDesign!, {
@@ -17,6 +22,18 @@ export default function Header() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+
+  async function saveImage(): Promise<void> {
+    const mainDesign = document.getElementById('main_design');
+    const image = await htmlToImage.toBlob(mainDesign!);
+
+    if (image) {
+      try {
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   return (
@@ -34,7 +51,10 @@ export default function Header() {
         </Link>
         <span className='text-xl'>Easy Canva</span>
         <div className='flex items-center justify-center gap-2 text-gray-200'>
-          <button className='rounded-md bg-[#7482f6] px-3 py-2 outline-none'>
+          <button
+            onClick={saveImage}
+            className='rounded-md bg-[#7482f6] px-3 py-2 outline-none'
+          >
             Save
           </button>
           <button
