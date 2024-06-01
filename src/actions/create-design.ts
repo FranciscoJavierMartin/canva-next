@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import { redirect } from 'next/navigation';
 import { JWT } from '@/lib/constants';
 import designModel from '@/lib/db/models/designModel';
+import connectMongo from '@/lib/db/connect-mongo';
 
 export async function createDesign(formData: FormData) {
   const token = cookies().get(JWT)?.value;
@@ -18,7 +19,7 @@ export async function createDesign(formData: FormData) {
 
       try {
         // TODO: Upload to cloudinary
-
+        await connectMongo();
         const design = await designModel.create({
           user_id: userInfo.id,
           components: [JSON.parse(designField.toString())],

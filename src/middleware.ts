@@ -29,7 +29,10 @@ export function middleware(request: NextRequest) {
       );
     }
   } else if (!isPublic && isLoggedIn) {
-    response = NextResponse.redirect(new URL('/?show=true&form=login'));
+    // response = NextResponse.redirect(
+    //   `${request.nextUrl.origin}/?show=true&form=login`,
+    // );
+    response = NextResponse.next();
   } else {
     response = NextResponse.next();
   }

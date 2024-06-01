@@ -394,7 +394,24 @@ export default function EditDesignPage({ params }: { params: { id: string } }) {
   ]);
 
   useEffect(() => {
-    getDesign(designId);
+    (async () => {
+      try {
+        const { design } = await getDesign(designId);
+
+        setComponents([
+          ...design.map((component) => ({
+            ...component,
+            setCurrentComponent: setCurrentComponent,
+            moveElement: moveElement,
+            resizeElement: resizeElement,
+            rotateElement: rotateElement,
+            removeBackground: removeBackground,
+          })),
+        ]);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, [designId]);
 
   return (

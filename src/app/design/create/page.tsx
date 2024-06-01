@@ -18,7 +18,7 @@ export default function CreateDesignPage({ searchParams }: SearchParamsProps) {
     height,
     width,
     z_index: 1,
-    color: 'green',
+    color: '#fff',
     image: 'http://localhost:4200/images/proxy-image.jpg',
   };
 
