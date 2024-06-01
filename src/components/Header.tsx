@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import * as htmlToImage from 'html-to-image';
+import { saveDesign } from '@/actions/save-design';
 
 type HeaderProps = {
   components: any[];
@@ -29,7 +30,14 @@ export default function Header({ components, designId }: HeaderProps) {
     const image = await htmlToImage.toBlob(mainDesign!);
 
     if (image) {
+      const obj = { design: components };
+      const formData = new FormData();
+      formData.append('designId', designId);
+      formData.append('design', JSON.stringify(obj));
+      formData.append('image', image);
+
       try {
+        await saveDesign(formData);
       } catch (error) {
         console.log(error);
       }
